@@ -102,26 +102,26 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-blue-950 font-sans selection:bg-blue-600 selection:text-white">
       
       {/* Sticky Header */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b-2 border-black">
+      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b-2 border-blue-900">
         <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-          <div className="text-lg font-bold tracking-tighter uppercase">
-            AB<span className="text-neutral-400">.</span>26
+          <div className="text-lg font-bold tracking-tighter uppercase text-blue-900">
+            AB<span className="text-blue-400">.</span>26
           </div>
           <div className="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-widest">
             {['Experience', 'Expertise', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
-                className="hover:text-neutral-500 transition-colors"
+                className="text-blue-900/60 hover:text-blue-600 transition-colors"
               >
                 {item}
               </button>
             ))}
           </div>
-          <a href={`mailto:${portfolioData.email}`} className="bg-black text-white px-5 py-2 text-sm font-bold uppercase hover:bg-neutral-800 transition-colors">
+          <a href={`mailto:${portfolioData.email}`} className="bg-blue-900 text-white px-5 py-2 text-sm font-bold uppercase hover:bg-blue-800 transition-colors shadow-lg shadow-blue-900/20">
             Hire Me
           </a>
         </div>
@@ -131,17 +131,17 @@ const App = () => {
         
         {/* HERO SECTION */}
         <section id="home" className="mb-32">
-          <div className="border-b-2 border-black pb-12">
-            <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.9] mb-8 uppercase break-words">
+          <div className="border-b-2 border-blue-900 pb-12">
+            <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.9] mb-8 uppercase break-words text-blue-900">
               Abhay<br/>Bhattacharjee
             </h1>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <p className="text-xl md:text-3xl font-medium max-w-2xl leading-tight">
+              <p className="text-xl md:text-3xl font-medium max-w-2xl leading-tight text-blue-900">
                 {portfolioData.role} & <br/>
-                {portfolioData.subRole}
+                <span className="text-blue-600">{portfolioData.subRole}</span>
               </p>
               
-              <div className="flex flex-col gap-2 text-sm font-mono text-neutral-600 md:text-right">
+              <div className="flex flex-col gap-2 text-sm font-mono text-blue-600 md:text-right">
                 <span className="flex items-center gap-2 md:justify-end">
                   <MapPin size={14}/> {portfolioData.location}
                 </span>
@@ -154,11 +154,11 @@ const App = () => {
           
           {/* About Blurb */}
           <div className="grid md:grid-cols-12 gap-8 pt-12">
-            <div className="md:col-span-3 text-sm font-bold uppercase tracking-widest text-neutral-400">
+            <div className="md:col-span-3 text-sm font-bold uppercase tracking-widest text-blue-400">
               01 / Profile
             </div>
             <div className="md:col-span-9">
-              <p className="text-2xl md:text-4xl font-light leading-snug">
+              <p className="text-2xl md:text-4xl font-light leading-snug text-blue-950">
                 {portfolioData.about}
               </p>
             </div>
@@ -167,37 +167,37 @@ const App = () => {
 
         {/* EXPERIENCE SECTION */}
         <section id="experience" className="mb-32">
-           <div className="border-t-2 border-black pt-4 mb-16">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400">
+           <div className="border-t-2 border-blue-900 pt-4 mb-16">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-blue-400">
               02 / Professional History
             </h2>
           </div>
 
-          <div className="space-y-0 divide-y divide-neutral-200">
+          <div className="space-y-0 divide-y divide-blue-100">
             {portfolioData.experience.map((job) => (
-              <div key={job.id} className="grid md:grid-cols-12 gap-8 py-12 group hover:bg-neutral-50 transition-colors">
+              <div key={job.id} className="grid md:grid-cols-12 gap-8 py-12 group hover:bg-blue-50 transition-colors">
                 {/* Date Column */}
                 <div className="md:col-span-3">
-                  <span className="font-mono text-sm border border-black px-3 py-1 rounded-full">
+                  <span className="font-mono text-sm border border-blue-900 text-blue-900 px-3 py-1 rounded-full bg-white">
                     {job.period}
                   </span>
                 </div>
                 
                 {/* Role & Company */}
                 <div className="md:col-span-4">
-                  <h3 className="text-2xl font-bold uppercase mb-1">{job.company}</h3>
-                  <p className="text-lg text-neutral-600 font-medium">{job.role}</p>
+                  <h3 className="text-2xl font-bold uppercase mb-1 text-blue-900">{job.company}</h3>
+                  <p className="text-lg text-blue-600 font-medium">{job.role}</p>
                 </div>
 
                 {/* Details */}
                 <div className="md:col-span-5">
-                   <p className="text-lg mb-6 leading-relaxed">
+                   <p className="text-lg mb-6 leading-relaxed text-blue-800">
                      {job.description}
                    </p>
                    <ul className="space-y-3">
                      {job.achievements.map((achievement, idx) => (
-                       <li key={idx} className="flex items-start gap-3 text-sm text-neutral-600">
-                         <Minus size={16} className="mt-0.5 flex-shrink-0 text-black" />
+                       <li key={idx} className="flex items-start gap-3 text-sm text-slate-600">
+                         <Minus size={16} className="mt-0.5 flex-shrink-0 text-blue-400" />
                          {achievement}
                        </li>
                      ))}
@@ -210,41 +210,41 @@ const App = () => {
 
         {/* EXPERTISE SECTION */}
         <section id="expertise" className="mb-32">
-          <div className="border-t-2 border-black pt-4 mb-16">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400">
+          <div className="border-t-2 border-blue-900 pt-4 mb-16">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-blue-400">
               03 / Core Competencies
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-black border-2 border-black">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-blue-900 border-2 border-blue-900">
             {portfolioData.skills.map((skill, idx) => (
-              <div key={idx} className="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:invert transition-all duration-300">
-                <span className="font-bold text-lg md:text-xl">{skill}</span>
+              <div key={idx} className="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
+                <span className="font-bold text-lg md:text-xl text-blue-900">{skill}</span>
               </div>
             ))}
           </div>
 
           <div className="grid md:grid-cols-2 mt-12 gap-12">
-             <div className="bg-neutral-100 p-8 border border-neutral-200">
-                <h3 className="text-xl font-bold uppercase mb-4">Education</h3>
-                <div className="flex justify-between items-start border-t border-black pt-4">
+             <div className="bg-blue-50 p-8 border border-blue-100">
+                <h3 className="text-xl font-bold uppercase mb-4 text-blue-900">Education</h3>
+                <div className="flex justify-between items-start border-t border-blue-900 pt-4">
                    <div>
-                     <p className="font-bold text-lg">Bachelor of Commerce</p>
-                     <p className="text-neutral-600">Applied Economics & Finance</p>
+                     <p className="font-bold text-lg text-blue-950">Bachelor of Commerce</p>
+                     <p className="text-blue-600">Applied Economics & Finance</p>
                    </div>
-                   <p className="font-mono text-sm">2017</p>
+                   <p className="font-mono text-sm text-blue-400">2017</p>
                 </div>
-                <p className="mt-2 text-sm text-neutral-500">St. Aloysius Autonomous College</p>
+                <p className="mt-2 text-sm text-slate-500">St. Aloysius Autonomous College</p>
              </div>
 
-             <div className="bg-neutral-100 p-8 border border-neutral-200">
-                <h3 className="text-xl font-bold uppercase mb-4">Certification</h3>
-                <div className="flex justify-between items-start border-t border-black pt-4">
+             <div className="bg-blue-50 p-8 border border-blue-100">
+                <h3 className="text-xl font-bold uppercase mb-4 text-blue-900">Certification</h3>
+                <div className="flex justify-between items-start border-t border-blue-900 pt-4">
                    <div>
-                     <p className="font-bold text-lg">Google Data Analytics</p>
-                     <p className="text-neutral-600">Professional Certificate</p>
+                     <p className="font-bold text-lg text-blue-950">Google Data Analytics</p>
+                     <p className="text-blue-600">Professional Certificate</p>
                    </div>
-                   <p className="font-mono text-sm">2021</p>
+                   <p className="font-mono text-sm text-blue-400">2021</p>
                 </div>
              </div>
           </div>
@@ -252,9 +252,9 @@ const App = () => {
 
         {/* CONTACT SECTION */}
         <section id="contact">
-          <div className="bg-black text-white p-8 md:p-20 relative overflow-hidden">
+          <div className="bg-blue-900 text-white p-8 md:p-20 relative overflow-hidden">
              {/* Decorative big text */}
-             <div className="absolute -top-10 -right-10 text-neutral-800 font-black text-9xl opacity-20 pointer-events-none select-none">
+             <div className="absolute -top-10 -right-10 text-blue-950 font-black text-9xl opacity-40 pointer-events-none select-none">
                CONTACT
              </div>
 
@@ -264,18 +264,18 @@ const App = () => {
              
              <div className="grid md:grid-cols-2 gap-12 relative z-10">
                 <div className="space-y-8">
-                  <a href={`mailto:${portfolioData.email}`} className="group block border-b border-white/20 pb-8 hover:border-white transition-colors">
-                    <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-2">Email</p>
+                  <a href={`mailto:${portfolioData.email}`} className="group block border-b border-blue-400/30 pb-8 hover:border-white transition-colors">
+                    <p className="text-sm font-bold uppercase tracking-widest text-blue-300 mb-2">Email</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xl md:text-2xl break-all">{portfolioData.email}</span>
+                      <span className="text-xl md:text-2xl break-all font-light">{portfolioData.email}</span>
                       <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </a>
                   
-                  <a href={`tel:${portfolioData.phone}`} className="group block border-b border-white/20 pb-8 hover:border-white transition-colors">
-                    <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-2">Phone</p>
+                  <a href={`tel:${portfolioData.phone}`} className="group block border-b border-blue-400/30 pb-8 hover:border-white transition-colors">
+                    <p className="text-sm font-bold uppercase tracking-widest text-blue-300 mb-2">Phone</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xl md:text-2xl">{portfolioData.phone}</span>
+                      <span className="text-xl md:text-2xl font-light">{portfolioData.phone}</span>
                       <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </a>
@@ -283,14 +283,14 @@ const App = () => {
 
                 <div className="flex flex-col justify-end items-start md:items-end">
                   <div className="flex gap-4">
-                     <a href="#" className="w-12 h-12 bg-white text-black flex items-center justify-center rounded-full hover:bg-neutral-200 transition-colors">
+                     <a href="#" className="w-12 h-12 bg-white text-blue-900 flex items-center justify-center rounded-full hover:bg-blue-100 transition-colors">
                        <Linkedin size={20} />
                      </a>
-                     <a href="#" className="w-12 h-12 border border-white text-white flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
+                     <a href="#" className="w-12 h-12 border border-white text-white flex items-center justify-center rounded-full hover:bg-white hover:text-blue-900 transition-colors">
                        <Download size={20} />
                      </a>
                   </div>
-                  <p className="mt-8 text-neutral-500 text-sm">
+                  <p className="mt-8 text-blue-300 text-sm">
                     © 2026 Abhay Bhattacharjee. All rights reserved.
                   </p>
                 </div>
