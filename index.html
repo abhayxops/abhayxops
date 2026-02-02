@@ -11,19 +11,20 @@
             theme: {
                 extend: {
                     colors: {
-                        blue: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            400: '#60a5fa',
-                            600: '#2563eb',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                            950: '#172554',
+                        neo: {
+                            accent: '#2dd4bf', // Teal-400
+                            dark: '#0f172a',   // Slate-900
+                            card: '#1e293b',   // Slate-800
+                            text: '#94a3b8',   // Slate-400
                         }
                     },
                     fontFamily: {
                         sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
                         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neo': '0 0 15px rgba(45, 212, 191, 0.3)',
+                        'neo-hover': '0 0 25px rgba(45, 212, 191, 0.5)',
                     }
                 }
             }
@@ -32,49 +33,64 @@
     <style>
         /* Custom selection color */
         ::selection {
-            background-color: #2563eb; /* blue-600 */
-            color: white;
+            background-color: #2dd4bf;
+            color: #0f172a;
+        }
+        
+        /* Subtle grid background pattern */
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="min-h-screen bg-white text-blue-950 font-sans antialiased">
+<body class="min-h-screen bg-slate-950 text-slate-300 font-sans antialiased bg-grid relative selection:bg-teal-500 selection:text-white">
+
+    <!-- Gradient Orbs for Atmosphere -->
+    <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none"></div>
 
     <!-- Sticky Header -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm border-b-2 border-blue-900">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-            <div class="text-lg font-bold tracking-tighter uppercase text-blue-900">
-                AB<span class="text-blue-400">.</span>26
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-slate-950/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tighter uppercase text-white flex items-center gap-1">
+                AB<span class="text-teal-400">.</span>26
             </div>
-            <div class="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-widest">
-                <button onclick="scrollToSection('experience')" class="nav-link text-blue-900/60 hover:text-blue-600 transition-colors" data-section="experience">Experience</button>
-                <button onclick="scrollToSection('expertise')" class="nav-link text-blue-900/60 hover:text-blue-600 transition-colors" data-section="expertise">Expertise</button>
-                <button onclick="scrollToSection('contact')" class="nav-link text-blue-900/60 hover:text-blue-600 transition-colors" data-section="contact">Contact</button>
+            <div class="hidden md:flex space-x-12 text-xs font-bold uppercase tracking-[0.2em]">
+                <button onclick="scrollToSection('experience')" class="nav-link text-slate-400 hover:text-teal-400 transition-colors duration-300" data-section="experience">Experience</button>
+                <button onclick="scrollToSection('expertise')" class="nav-link text-slate-400 hover:text-teal-400 transition-colors duration-300" data-section="expertise">Expertise</button>
+                <button onclick="scrollToSection('contact')" class="nav-link text-slate-400 hover:text-teal-400 transition-colors duration-300" data-section="contact">Contact</button>
             </div>
-            <a href="mailto:abhav.bhattacharjee@outlook.com" class="bg-blue-900 text-white px-5 py-2 text-sm font-bold uppercase hover:bg-blue-800 transition-colors shadow-lg shadow-blue-900/20">
-                Hire Me
+            <a href="mailto:abhav.bhattacharjee@outlook.com" class="relative group px-6 py-2.5 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-wider text-white overflow-hidden transition-all hover:border-teal-400/50 hover:shadow-neo">
+                <span class="relative z-10 group-hover:text-teal-400 transition-colors">Hire Me</span>
+                <div class="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
             </a>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-10">
 
         <!-- HERO SECTION -->
-        <section id="home" class="mb-32 scroll-mt-32">
-            <div class="border-b-2 border-blue-900 pb-12">
-                <h1 class="text-6xl md:text-9xl font-black tracking-tighter leading-[0.9] mb-8 uppercase break-words text-blue-900">
-                    Abhay<br/>Bhattacharjee
+        <section id="home" class="mb-40 scroll-mt-32">
+            <div class="border-b border-white/10 pb-16">
+                <div class="inline-block px-3 py-1 mb-6 rounded-full bg-teal-400/10 border border-teal-400/20 text-teal-400 text-[10px] font-bold uppercase tracking-widest">
+                    Available for New Roles
+                </div>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-[0.9] mb-8 text-white">
+                    Abhay<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-200 to-slate-600">Bhattacharjee</span>
                 </h1>
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
-                    <p class="text-xl md:text-3xl font-medium max-w-2xl leading-tight text-blue-900">
-                        Operations Manager & <br/>
-                        <span class="text-blue-600">Strategic Leader & Data Analyst</span>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                    <p class="text-xl md:text-2xl font-light max-w-2xl leading-relaxed text-slate-300">
+                        <span class="text-white font-medium">Operations Manager</span> blending strategic leadership with 
+                        <span class="text-teal-400 font-medium">Data Analytics</span> to drive organizational excellence.
                     </p>
                     
-                    <div class="flex flex-col gap-2 text-sm font-mono text-blue-600 md:text-right">
-                        <span class="flex items-center gap-2 md:justify-end">
-                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Indore, MP
+                    <div class="flex flex-col gap-3 text-xs font-mono text-slate-500 md:text-right">
+                        <span class="flex items-center gap-2 md:justify-end hover:text-teal-400 transition-colors cursor-default">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Indore, Madhya Pradesh
                         </span>
-                        <span class="flex items-center gap-2 md:justify-end">
+                        <span class="flex items-center gap-2 md:justify-end hover:text-teal-400 transition-colors cursor-default">
                             <i data-lucide="phone" class="w-3.5 h-3.5"></i> (+91) 934-000-7822
                         </span>
                     </div>
@@ -82,145 +98,112 @@
             </div>
             
             <!-- About Blurb -->
-            <div class="grid md:grid-cols-12 gap-8 pt-12">
-                <div class="md:col-span-3 text-sm font-bold uppercase tracking-widest text-blue-400">
-                    01 / Profile
+            <div class="grid md:grid-cols-12 gap-8 pt-16">
+                <div class="md:col-span-3 text-xs font-bold uppercase tracking-widest text-teal-400/80 flex items-center gap-2">
+                    <span class="w-8 h-[1px] bg-teal-400/50"></span> Profile
                 </div>
                 <div class="md:col-span-9">
-                    <p class="text-2xl md:text-4xl font-light leading-snug text-blue-950">
-                        Decisive Operations Manager driving revenue growth and optimizing performance. Expert in aligning operational priorities with corporate objectives through data-driven strategies.
+                    <p class="text-2xl md:text-3xl font-light leading-snug text-slate-200">
+                        Decisive professional with extensive experience in <strong class="text-white font-medium">Strategic Operations</strong>. Expert in aligning operational priorities with corporate objectives through precise forecasting, workforce optimization, and data-driven insights.
                     </p>
                 </div>
             </div>
         </section>
 
         <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="mb-32 scroll-mt-24">
-            <div class="border-t-2 border-blue-900 pt-4 mb-16">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-blue-400">
-                    02 / Professional History
+        <section id="experience" class="mb-40 scroll-mt-24">
+            <div class="flex items-center gap-4 mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-teal-400">
+                    Professional History
                 </h2>
+                <div class="h-[1px] flex-grow bg-white/10"></div>
             </div>
 
-            <div class="space-y-0 divide-y divide-blue-100">
+            <div class="space-y-6">
                 
                 <!-- Job 1 -->
-                <div class="grid md:grid-cols-12 gap-8 py-12 group hover:bg-blue-50 transition-colors">
-                    <div class="md:col-span-3">
-                        <span class="font-mono text-sm border border-blue-900 text-blue-900 px-3 py-1 rounded-full bg-white">
-                            2023 - Present
-                        </span>
-                    </div>
-                    <div class="md:col-span-4">
-                        <h3 class="text-2xl font-bold uppercase mb-1 text-blue-900">TaskUs</h3>
-                        <p class="text-lg text-blue-600 font-medium">Operations Manager</p>
-                    </div>
-                    <div class="md:col-span-5">
-                        <p class="text-lg mb-6 leading-relaxed text-blue-800">
-                            Spearheading a team of 150+ teammates and 10 team leaders.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Optimized operational performance through precise forecasting.
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Introduced and established the Phone Line of Business.
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Reduced attrition by 4% month-over-month.
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Improved ESAT scores by approximately 47.5%.
-                            </li>
-                        </ul>
+                <div class="group relative p-8 md:p-10 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-teal-400/30 transition-all duration-500">
+                    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-teal-400/0 to-transparent group-hover:via-teal-400/50 transition-all duration-700"></div>
+                    
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <div class="md:col-span-3">
+                            <span class="font-mono text-xs text-teal-400">2023 - Present</span>
+                        </div>
+                        <div class="md:col-span-4">
+                            <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-teal-400 transition-colors">TaskUs</h3>
+                            <p class="text-base text-slate-400 font-medium">Operations Manager</p>
+                        </div>
+                        <div class="md:col-span-5">
+                            <p class="text-base mb-6 leading-relaxed text-slate-300">
+                                Spearheading a team of 150+ teammates and 10 team leaders.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-teal-500/50 mt-1.5 shadow-[0_0_10px_rgba(45,212,191,0.5)]"></div>
+                                    Optimized operational performance through precise forecasting.
+                                </li>
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-teal-500/50 mt-1.5 shadow-[0_0_10px_rgba(45,212,191,0.5)]"></div>
+                                    Introduced and established the Phone Line of Business.
+                                </li>
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-teal-500/50 mt-1.5 shadow-[0_0_10px_rgba(45,212,191,0.5)]"></div>
+                                    Reduced attrition by <span class="text-white font-bold">4% month-over-month</span>.
+                                </li>
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-teal-500/50 mt-1.5 shadow-[0_0_10px_rgba(45,212,191,0.5)]"></div>
+                                    Improved ESAT scores by approx <span class="text-white font-bold">47.5%</span>.
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Job 2 -->
-                <div class="grid md:grid-cols-12 gap-8 py-12 group hover:bg-blue-50 transition-colors">
-                    <div class="md:col-span-3">
-                        <span class="font-mono text-sm border border-blue-900 text-blue-900 px-3 py-1 rounded-full bg-white">
-                            2021 - 2023
-                        </span>
-                    </div>
-                    <div class="md:col-span-4">
-                        <h3 class="text-2xl font-bold uppercase mb-1 text-blue-900">TaskUs</h3>
-                        <p class="text-lg text-blue-600 font-medium">Operations Team Leader</p>
-                    </div>
-                    <div class="md:col-span-5">
-                        <p class="text-lg mb-6 leading-relaxed text-blue-800">
-                            Championed a team of ~21 teammates focused on high-quality service.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Exceeded First Call Resolution (FCR) goals by ~4.8%.
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Enhanced client satisfaction via proactive resolutions.
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Implemented automation using Connectors and AppScripts.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="grid md:grid-cols-12 gap-8 py-12 group hover:bg-blue-50 transition-colors">
-                    <div class="md:col-span-3">
-                        <span class="font-mono text-sm border border-blue-900 text-blue-900 px-3 py-1 rounded-full bg-white">
-                            2020 - 2021
-                        </span>
-                    </div>
-                    <div class="md:col-span-4">
-                        <h3 class="text-2xl font-bold uppercase mb-1 text-blue-900">TaskUs</h3>
-                        <p class="text-lg text-blue-600 font-medium">Teammate</p>
-                    </div>
-                    <div class="md:col-span-5">
-                        <p class="text-lg mb-6 leading-relaxed text-blue-800">
-                            Foundational role focusing on service excellence.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Awarded 'Best Teamleader, Year 2020'.
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Recognized for outstanding performance early in tenure.
-                            </li>
-                        </ul>
+                <div class="group relative p-8 md:p-10 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-teal-400/30 transition-all duration-500">
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <div class="md:col-span-3">
+                            <span class="font-mono text-xs text-slate-500 group-hover:text-teal-400 transition-colors">2021 - 2023</span>
+                        </div>
+                        <div class="md:col-span-4">
+                            <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-teal-400 transition-colors">TaskUs</h3>
+                            <p class="text-base text-slate-400 font-medium">Operations Team Leader</p>
+                        </div>
+                        <div class="md:col-span-5">
+                            <p class="text-base mb-6 leading-relaxed text-slate-300">
+                                Championed a team of ~21 teammates focused on high-quality service.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-slate-700 mt-1.5 group-hover:bg-teal-500/50 transition-colors"></div>
+                                    Exceeded First Call Resolution (FCR) goals by <span class="text-white font-bold">~4.8%</span>.
+                                </li>
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-slate-700 mt-1.5 group-hover:bg-teal-500/50 transition-colors"></div>
+                                    Enhanced client satisfaction via proactive resolutions.
+                                </li>
+                                <li class="flex items-start gap-4 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-slate-700 mt-1.5 group-hover:bg-teal-500/50 transition-colors"></div>
+                                    Implemented automation using Connectors and AppScripts.
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Job 4 -->
-                <div class="grid md:grid-cols-12 gap-8 py-12 group hover:bg-blue-50 transition-colors">
-                    <div class="md:col-span-3">
-                        <span class="font-mono text-sm border border-blue-900 text-blue-900 px-3 py-1 rounded-full bg-white">
-                            2018 - 2020
-                        </span>
+                <!-- Job 3 & 4 Condensed -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-teal-400/30 transition-all duration-500">
+                        <span class="font-mono text-xs text-slate-500 mb-2 block">2020 - 2021</span>
+                        <h3 class="text-xl font-bold text-white mb-1">TaskUs</h3>
+                        <p class="text-sm text-teal-400 font-medium mb-4">Teammate</p>
+                        <p class="text-sm text-slate-400">Awarded 'Best Teamleader, Year 2020'. Recognized for outstanding performance early in tenure.</p>
                     </div>
-                    <div class="md:col-span-4">
-                        <h3 class="text-2xl font-bold uppercase mb-1 text-blue-900">Gun Carriage Factory</h3>
-                        <p class="text-lg text-blue-600 font-medium">Apprenticeship</p>
-                    </div>
-                    <div class="md:col-span-5">
-                        <p class="text-lg mb-6 leading-relaxed text-blue-800">
-                            Technical apprenticeship in precision machining.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-3 text-sm text-slate-600">
-                                <i data-lucide="minus" class="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400"></i>
-                                Gained hands-on experience in industrial manufacturing.
-                            </li>
-                        </ul>
+                    <div class="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-teal-400/30 transition-all duration-500">
+                        <span class="font-mono text-xs text-slate-500 mb-2 block">2018 - 2020</span>
+                        <h3 class="text-xl font-bold text-white mb-1">Gun Carriage Factory</h3>
+                        <p class="text-sm text-teal-400 font-medium mb-4">Apprenticeship</p>
+                        <p class="text-sm text-slate-400">Technical apprenticeship in precision machining. Gained hands-on experience in industrial manufacturing.</p>
                     </div>
                 </div>
 
@@ -228,61 +211,64 @@
         </section>
 
         <!-- EXPERTISE SECTION -->
-        <section id="expertise" class="mb-32 scroll-mt-24">
-            <div class="border-t-2 border-blue-900 pt-4 mb-16">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-blue-400">
-                    03 / Core Competencies
+        <section id="expertise" class="mb-40 scroll-mt-24">
+            <div class="flex items-center gap-4 mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-teal-400">
+                    Core Competencies
                 </h2>
+                <div class="h-[1px] flex-grow bg-white/10"></div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-blue-900 border-2 border-blue-900">
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Strategic Management</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(45,212,191,0.2)]">Strategic Mgmt</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Operations Management</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">Operations Mgmt</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">PowerBI</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">PowerBI</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Tableau</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">Tableau</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Looker Studio</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">Looker Studio</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Data Analysis</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">Data Analysis</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Salesforce</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">Salesforce</span>
                 </div>
-                <div class="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:bg-blue-50 transition-all duration-300">
-                    <span class="font-bold text-lg md:text-xl text-blue-900">Power Automate</span>
+                <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/5 text-center hover:bg-teal-500/10 hover:border-teal-500/30 hover:scale-[1.02] transition-all duration-300 group cursor-default">
+                    <span class="text-sm font-bold text-slate-300 group-hover:text-white">Power Automate</span>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 mt-12 gap-12">
-                <div class="bg-blue-50 p-8 border border-blue-100">
-                    <h3 class="text-xl font-bold uppercase mb-4 text-blue-900">Education</h3>
-                    <div class="flex justify-between items-start border-t border-blue-900 pt-4">
+            <div class="grid md:grid-cols-2 mt-12 gap-8">
+                <div class="p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-teal-500/20 transition-all duration-500"></div>
+                    <h3 class="text-lg font-bold uppercase mb-4 text-white tracking-wider">Education</h3>
+                    <div class="flex justify-between items-start border-t border-white/10 pt-4">
                         <div>
-                            <p class="font-bold text-lg text-blue-950">Bachelor of Commerce</p>
-                            <p class="text-blue-600">Applied Economics & Finance</p>
+                            <p class="font-bold text-lg text-slate-200">Bachelor of Commerce</p>
+                            <p class="text-slate-500 text-sm">Applied Economics & Finance</p>
                         </div>
-                        <p class="font-mono text-sm text-blue-400">2017</p>
+                        <p class="font-mono text-xs text-teal-400">2017</p>
                     </div>
-                    <p class="mt-2 text-sm text-slate-500">St. Aloysius Autonomous College</p>
+                    <p class="mt-2 text-xs text-slate-600 uppercase tracking-widest">St. Aloysius Autonomous College</p>
                 </div>
 
-                <div class="bg-blue-50 p-8 border border-blue-100">
-                    <h3 class="text-xl font-bold uppercase mb-4 text-blue-900">Certification</h3>
-                    <div class="flex justify-between items-start border-t border-blue-900 pt-4">
+                <div class="p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 relative overflow-hidden group">
+                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                    <h3 class="text-lg font-bold uppercase mb-4 text-white tracking-wider">Certification</h3>
+                    <div class="flex justify-between items-start border-t border-white/10 pt-4">
                         <div>
-                            <p class="font-bold text-lg text-blue-950">Google Data Analytics</p>
-                            <p class="text-blue-600">Professional Certificate</p>
+                            <p class="font-bold text-lg text-slate-200">Google Data Analytics</p>
+                            <p class="text-slate-500 text-sm">Professional Certificate</p>
                         </div>
-                        <p class="font-mono text-sm text-blue-400">2021</p>
+                        <p class="font-mono text-xs text-teal-400">2021</p>
                     </div>
                 </div>
             </div>
@@ -290,49 +276,42 @@
 
         <!-- CONTACT SECTION -->
         <section id="contact" class="scroll-mt-24">
-            <div class="bg-blue-900 text-white p-8 md:p-20 relative overflow-hidden">
-                <!-- Decorative big text -->
-                <div class="absolute -top-10 -right-10 text-blue-950 font-black text-9xl opacity-40 pointer-events-none select-none" style="font-size: 14rem;">
-                    CONTACT
-                </div>
+            <div class="rounded-[2.5rem] bg-gradient-to-b from-slate-900 to-black border border-white/10 p-10 md:p-24 text-center relative overflow-hidden group">
+                
+                <!-- Glowing Orb Background -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-teal-500/10 rounded-full blur-[100px] group-hover:bg-teal-500/20 transition-all duration-700"></div>
 
-                <h2 class="text-5xl md:text-7xl font-bold uppercase mb-12 relative z-10">
-                    Let's Work<br/>Together
+                <h2 class="text-5xl md:text-8xl font-black uppercase mb-12 relative z-10 text-white tracking-tighter">
+                    Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Collaborate</span>
                 </h2>
                 
-                <div class="grid md:grid-cols-2 gap-12 relative z-10">
-                    <div class="space-y-8">
-                        <a href="mailto:abhav.bhattacharjee@outlook.com" class="group block border-b border-blue-400/30 pb-8 hover:border-white transition-colors">
-                            <p class="text-sm font-bold uppercase tracking-widest text-blue-300 mb-2">Email</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl md:text-2xl break-all font-light">abhav.bhattacharjee@outlook.com</span>
-                                <i data-lucide="arrow-up-right" class="opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </a>
-                        
-                        <a href="tel:(+91) 934-000-7822" class="group block border-b border-blue-400/30 pb-8 hover:border-white transition-colors">
-                            <p class="text-sm font-bold uppercase tracking-widest text-blue-300 mb-2">Phone</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xl md:text-2xl font-light">(+91) 934-000-7822</span>
-                                <i data-lucide="arrow-up-right" class="opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="flex flex-col justify-end items-start md:items-end">
-                        <div class="flex gap-4">
-                            <a href="https://linkedin.com/in/abhay" target="_blank" class="w-12 h-12 bg-white text-blue-900 flex items-center justify-center rounded-full hover:bg-blue-100 transition-colors">
-                                <i data-lucide="linkedin" class="w-5 h-5"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 border border-white text-white flex items-center justify-center rounded-full hover:bg-white hover:text-blue-900 transition-colors">
-                                <i data-lucide="download" class="w-5 h-5"></i>
-                            </a>
-                        </div>
-                        <p class="mt-8 text-blue-300 text-sm">
-                            © 2026 Abhay Bhattacharjee. All rights reserved.
-                        </p>
-                    </div>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
+                    <a href="mailto:abhav.bhattacharjee@outlook.com" class="group/btn relative px-8 py-4 rounded-full bg-white text-slate-950 font-bold uppercase tracking-wider overflow-hidden hover:scale-105 transition-transform duration-300">
+                        <span class="relative z-10 flex items-center gap-2">
+                            Email Me <i data-lucide="mail" class="w-4 h-4"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-teal-400 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
+                    </a>
+                    
+                    <a href="tel:(+91) 934-000-7822" class="group/btn px-8 py-4 rounded-full bg-transparent border border-white/20 text-white font-bold uppercase tracking-wider hover:bg-white/5 hover:border-teal-400/50 transition-all duration-300">
+                         <span class="flex items-center gap-2">
+                            (+91) 934-000-7822 <i data-lucide="phone" class="w-4 h-4 text-teal-400"></i>
+                        </span>
+                    </a>
                 </div>
+
+                <div class="mt-20 flex justify-center gap-6 relative z-10">
+                    <a href="https://linkedin.com/in/abhay" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-teal-500 hover:border-teal-500 hover:shadow-neo transition-all duration-300">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all duration-300">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <p class="mt-12 text-slate-600 text-xs uppercase tracking-widest relative z-10">
+                    © 2026 Abhay Bhattacharjee.
+                </p>
             </div>
         </section>
 
@@ -361,20 +340,19 @@
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    // If the section is currently in view (approximate calculation)
-                    if (rect.top <= 200 && rect.bottom >= 200) {
+                    if (rect.top <= 300 && rect.bottom >= 300) {
                         current = section;
                     }
                 }
             });
 
             navLinks.forEach(link => {
-                link.classList.remove('text-blue-600');
-                link.classList.add('text-blue-900/60');
+                link.classList.remove('text-teal-400');
+                link.classList.add('text-slate-400');
                 
                 if (link.getAttribute('data-section') === current) {
-                    link.classList.remove('text-blue-900/60');
-                    link.classList.add('text-blue-600');
+                    link.classList.remove('text-slate-400');
+                    link.classList.add('text-teal-400');
                 }
             });
         });
