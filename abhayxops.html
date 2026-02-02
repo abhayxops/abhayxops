@@ -1,335 +1,306 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.1">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6f0ec3; -webkit-text-stroke: #6f0ec3}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0e6e6d; -webkit-text-stroke: #0e6e6d}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4d5055; -webkit-text-stroke: #4d5055}
-    span.s1 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
-    span.s2 {font-kerning: none; background-color: #ecf1f7}
-    span.s3 {font-kerning: none; color: #0e6e6d; background-color: #ecf1f7; -webkit-text-stroke: 0px #0e6e6d}
-    span.s4 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
-    span.s5 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
-    span.s6 {font-kerning: none}
-    span.s7 {font-kerning: none; color: #a4450b; background-color: #ecf1f7; -webkit-text-stroke: 0px #a4450b}
-    span.s8 {font-kerning: none; color: #4d5055; background-color: #ecf1f7; -webkit-text-stroke: 0px #4d5055}
-    span.s9 {font-kerning: none; color: #bf1c25; background-color: #ecf1f7; -webkit-text-stroke: 0px #bf1c25}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">import</span><span class="s2"> </span><span class="s3">React</span><span class="s2">, { useState, useEffect } </span><span class="s1">from</span><span class="s2"> </span><span class="s4">'react'</span><span class="s2">;</span></p>
-<p class="p2"><span class="s2">import</span><span class="s5"> {<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">ArrowUpRight</span><span class="s5">,<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">Mail</span><span class="s2">,<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">Linkedin</span><span class="s5">,<span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">Download</span><span class="s5">,</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">MapPin</span><span class="s5">,</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">Phone</span><span class="s5">,</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">ArrowRight</span><span class="s5">,</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">Minus</span></p>
-<p class="p4"><span class="s5">} </span><span class="s1">from</span><span class="s5"> </span><span class="s2">'lucide-react'</span><span class="s5">;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p1"><span class="s1">const</span><span class="s2"> </span><span class="s3">App</span><span class="s2"> = () =&gt; {</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> [activeSection, setActiveSection] = useState(</span><span class="s4">'home'</span><span class="s2">);</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>useEffect(() =&gt; {</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">const</span><span class="s2"> handleScroll = () =&gt; {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">const</span><span class="s5"> sections = [</span><span class="s2">'home'</span><span class="s5">, </span><span class="s2">'experience'</span><span class="s5">, </span><span class="s2">'expertise'</span><span class="s5">, </span><span class="s2">'contact'</span><span class="s5">];</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">const</span><span class="s2"> current = sections.find(section =&gt; {</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s1">const</span><span class="s2"> element = document.getElementById(section);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s1">if</span><span class="s2"> (element) {</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">const</span><span class="s2"> rect = element.getBoundingClientRect();</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s1">return</span><span class="s2"> rect.top &gt;= </span><span class="s7">0</span><span class="s2"> &amp;&amp; rect.top &lt;= </span><span class="s7">300</span><span class="s2">;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s2">return</span><span class="s5"> </span><span class="s2">false</span><span class="s5">;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>});</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s1">if</span><span class="s2"> (current) setActiveSection(current);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>};</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>window.addEventListener(</span><span class="s4">'scroll'</span><span class="s2">, handleScroll);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">return</span><span class="s2"> () =&gt; window.removeEventListener(</span><span class="s4">'scroll'</span><span class="s2">, handleScroll);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>}, []);</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> scrollToSection = (id) =&gt; {</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">const</span><span class="s2"> element = document.getElementById(id);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">if</span><span class="s2"> (element) {</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>element.scrollIntoView({ behavior: </span><span class="s4">'smooth'</span><span class="s2"> });</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>};</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> portfolioData = {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>name: </span><span class="s2">"Abhay Bhattacharjee"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>role: </span><span class="s2">"Operations Manager"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>subRole: </span><span class="s2">"Strategic Leader &amp; Data Analyst"</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>location: </span><span class="s4">"Indore, MP"</span><span class="s2">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>email: </span><span class="s2">"abhav.bhattacharjee@outlook.com"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>phone: </span><span class="s2">"(+91) 934-000-7822"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>linkedin: </span><span class="s2">"linkedin.com/in/abhay"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>about: </span><span class="s2">"Decisive Operations Manager driving revenue growth and optimizing performance. Expert in aligning operational priorities with corporate objectives through data-driven strategies."</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>skills: [</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s2">"Strategic Management"</span><span class="s5">, </span><span class="s2">"Operations Management"</span><span class="s5">, </span><span class="s2">"PowerBI"</span><span class="s5">, </span><span class="s2">"Tableau"</span><span class="s5">,<span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s2">"Looker Studio"</span><span class="s5">, </span><span class="s2">"Data Analysis"</span><span class="s5">, </span><span class="s2">"Salesforce"</span><span class="s5">, </span><span class="s2">"Power Automate"</span><span class="s5">,<span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s2">"AI Integration"</span><span class="s5">, </span><span class="s2">"Risk Management"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>],</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>experience: [</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>id: </span><span class="s7">1</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>company: </span><span class="s4">"TaskUs"</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>period: </span><span class="s4">"2023 - Present"</span><span class="s2">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>role: </span><span class="s2">"Operations Manager"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>description: </span><span class="s2">"Spearheading a team of 150+ teammates and 10 team leaders."</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>achievements: [</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Optimized operational performance through precise forecasting."</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Introduced and established the Phone Line of Business."</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Reduced attrition by 4% month-over-month."</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Improved ESAT scores by approximately 47.5%."</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>]</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>},</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>id: </span><span class="s7">2</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>company: </span><span class="s4">"TaskUs"</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>period: </span><span class="s4">"2021 - 2023"</span><span class="s2">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>role: </span><span class="s2">"Operations Team Leader"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>description: </span><span class="s2">"Championed a team of ~21 teammates focused on high-quality service."</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>achievements: [</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Exceeded First Call Resolution (FCR) goals by ~4.8%."</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Enhanced client satisfaction via proactive resolutions."</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Implemented automation using Connectors and AppScripts."</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>]</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>},</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>id: </span><span class="s7">3</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>company: </span><span class="s4">"TaskUs"</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>period: </span><span class="s4">"2020 - 2021"</span><span class="s2">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>role: </span><span class="s4">"Teammate"</span><span class="s2">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>description: </span><span class="s2">"Foundational role focusing on service excellence."</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>achievements: [</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Awarded 'Best Teamleader, Year 2020'."</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Recognized for outstanding performance early in tenure."</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>]</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>},</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>id: </span><span class="s7">4</span><span class="s2">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>company: </span><span class="s2">"Gun Carriage Factory"</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>period: </span><span class="s4">"2018 - 2020"</span><span class="s2">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>role: </span><span class="s2">"Apprenticeship"</span><span class="s5">,</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>description: </span><span class="s2">"Technical apprenticeship in precision machining."</span><span class="s5">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>achievements: [</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s2">"Gained hands-on experience in industrial manufacturing."</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>]</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>]</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>};</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">return</span><span class="s5"> (</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>&lt;div className=</span><span class="s2">"min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white"</span><span class="s5">&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">      </span></span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">      </span>{</span><span class="s2">/* Sticky Header */</span><span class="s5">}</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>&lt;nav className=</span><span class="s2">"fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b-2 border-black"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>&lt;div className=</span><span class="s2">"max-w-7xl mx-auto px-6 h-16 flex justify-between items-center"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"text-lg font-bold tracking-tighter uppercase"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s3">AB</span><span class="s2">&lt;span className=</span><span class="s4">"text-neutral-400"</span><span class="s2">&gt;.&lt;/span&gt;</span><span class="s7">26</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"hidden md:flex space-x-12 text-sm font-bold uppercase tracking-widest"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>{[</span><span class="s4">'Experience'</span><span class="s2">, </span><span class="s4">'Expertise'</span><span class="s2">, </span><span class="s4">'Contact'</span><span class="s2">].map((item) =&gt; (</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;button</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>key={item}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>onClick={() =&gt; scrollToSection(item.toLowerCase())}</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                </span>className=</span><span class="s2">"hover:text-neutral-500 transition-colors"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{item}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;a href={</span><span class="s2">`mailto:</span><span class="s5">${portfolioData.email}</span><span class="s2">`</span><span class="s5">} className=</span><span class="s2">"bg-black text-white px-5 py-2 text-sm font-bold uppercase hover:bg-neutral-800 transition-colors"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s3">Hire</span><span class="s2"> </span><span class="s3">Me</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/a&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>&lt;/nav&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>&lt;main className=</span><span class="s2">"max-w-7xl mx-auto px-6 pt-32 pb-20"</span><span class="s5">&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">        </span></span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span>{</span><span class="s2">/* HERO SECTION */</span><span class="s5">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;section id=</span><span class="s4">"home"</span><span class="s2"> className=</span><span class="s4">"mb-32"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"border-b-2 border-black pb-12"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>&lt;h1 className=</span><span class="s2">"text-6xl md:text-9xl font-black tracking-tighter leading-[0.9] mb-8 uppercase break-words"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s3">Abhay</span><span class="s2">&lt;br/&gt;</span><span class="s3">Bhattacharjee</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>&lt;div className=</span><span class="s2">"flex flex-col md:flex-row md:items-end justify-between gap-8"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;p className=</span><span class="s2">"text-xl md:text-3xl font-medium max-w-2xl leading-tight"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{portfolioData.role} &amp; &lt;br/&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{portfolioData.subRole}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/p&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">              </span></span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;div className=</span><span class="s2">"flex flex-col gap-2 text-sm font-mono text-neutral-600 md:text-right"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                </span>&lt;span className=</span><span class="s2">"flex items-center gap-2 md:justify-end"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;</span><span class="s3">MapPin</span><span class="s2"> size={</span><span class="s7">14</span><span class="s2">}/&gt; {portfolioData.location}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/span&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                </span>&lt;span className=</span><span class="s2">"flex items-center gap-2 md:justify-end"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;</span><span class="s3">Phone</span><span class="s2"> size={</span><span class="s7">14</span><span class="s2">}/&gt; {portfolioData.phone}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/span&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">          </span></span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">          </span>{</span><span class="s2">/* About Blurb */</span><span class="s5">}</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"grid md:grid-cols-12 gap-8 pt-12"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>&lt;div className=</span><span class="s2">"md:col-span-3 text-sm font-bold uppercase tracking-widest text-neutral-400"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s7">01</span><span class="s2"> / </span><span class="s3">Profile</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;div className=</span><span class="s4">"md:col-span-9"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;p className=</span><span class="s2">"text-2xl md:text-4xl font-light leading-snug"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{portfolioData.about}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/section&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span>{</span><span class="s2">/* EXPERIENCE SECTION */</span><span class="s5">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;section id=</span><span class="s4">"experience"</span><span class="s2"> className=</span><span class="s4">"mb-32"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">           </span>&lt;div className=</span><span class="s2">"border-t-2 border-black pt-4 mb-16"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>&lt;h2 className=</span><span class="s2">"text-sm font-bold uppercase tracking-widest text-neutral-400"</span><span class="s5">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">              </span></span><span class="s7">02</span><span class="s5"> / </span><span class="s2">Professional</span><span class="s5"> </span><span class="s2">History</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"space-y-0 divide-y divide-neutral-200"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>{portfolioData.experience.map((job) =&gt; (</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;div key={job.id} className=</span><span class="s2">"grid md:grid-cols-12 gap-8 py-12 group hover:bg-neutral-50 transition-colors"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{</span><span class="s8">/* Date Column */</span><span class="s2">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s4">"md:col-span-3"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;span className=</span><span class="s2">"font-mono text-sm border border-black px-3 py-1 rounded-full"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>{job.period}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/span&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">                </span></span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">                </span>{</span><span class="s2">/* Role &amp; Company */</span><span class="s5">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s4">"md:col-span-4"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;h3 className=</span><span class="s4">"text-2xl font-bold uppercase mb-1"</span><span class="s2">&gt;{job.company}&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;p className=</span><span class="s4">"text-lg text-neutral-600 font-medium"</span><span class="s2">&gt;{job.role}&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{</span><span class="s8">/* Details */</span><span class="s2">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s4">"md:col-span-5"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;p className=</span><span class="s4">"text-lg mb-6 leading-relaxed"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>{job.description}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;ul className=</span><span class="s4">"space-y-3"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>{job.achievements.map((achievement, idx) =&gt; (</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                       </span>&lt;li key={idx} className=</span><span class="s2">"flex items-start gap-3 text-sm text-neutral-600"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                         </span>&lt;</span><span class="s3">Minus</span><span class="s2"> size={</span><span class="s7">16</span><span class="s2">} className=</span><span class="s4">"mt-0.5 flex-shrink-0 text-black"</span><span class="s2"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                         </span>{achievement}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                       </span>&lt;/li&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/section&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span>{</span><span class="s2">/* EXPERTISE SECTION */</span><span class="s5">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;section id=</span><span class="s4">"expertise"</span><span class="s2"> className=</span><span class="s4">"mb-32"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"border-t-2 border-black pt-4 mb-16"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>&lt;h2 className=</span><span class="s2">"text-sm font-bold uppercase tracking-widest text-neutral-400"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s7">03</span><span class="s2"> / </span><span class="s3">Core</span><span class="s2"> </span><span class="s3">Competencies</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"grid grid-cols-2 md:grid-cols-4 gap-px bg-black border-2 border-black"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>{portfolioData.skills.map((skill, idx) =&gt; (</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;div key={idx} className=</span><span class="s2">"bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:invert transition-all duration-300"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;span className=</span><span class="s4">"font-bold text-lg md:text-xl"</span><span class="s2">&gt;{skill}&lt;/span&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"grid md:grid-cols-2 mt-12 gap-12"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">             </span>&lt;div className=</span><span class="s2">"bg-neutral-100 p-8 border border-neutral-200"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;h3 className=</span><span class="s4">"text-xl font-bold uppercase mb-4"</span><span class="s2">&gt;</span><span class="s3">Education</span><span class="s2">&lt;/h3&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s2">"flex justify-between items-start border-t border-black pt-4"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>&lt;p className=</span><span class="s4">"font-bold text-lg"</span><span class="s2">&gt;</span><span class="s3">Bachelor</span><span class="s2"> </span><span class="s1">of</span><span class="s2"> </span><span class="s3">Commerce</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>&lt;p className=</span><span class="s4">"text-neutral-600"</span><span class="s2">&gt;</span><span class="s3">Applied</span><span class="s2"> </span><span class="s3">Economics</span><span class="s2"> &amp; </span><span class="s3">Finance</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;p className=</span><span class="s4">"font-mono text-sm"</span><span class="s2">&gt;</span><span class="s7">2017</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;p className=</span><span class="s4">"mt-2 text-sm text-neutral-500"</span><span class="s2">&gt;</span><span class="s3">St</span><span class="s2">. </span><span class="s3">Aloysius</span><span class="s2"> </span><span class="s3">Autonomous</span><span class="s2"> </span><span class="s3">College</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">             </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">             </span>&lt;div className=</span><span class="s2">"bg-neutral-100 p-8 border border-neutral-200"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;h3 className=</span><span class="s4">"text-xl font-bold uppercase mb-4"</span><span class="s2">&gt;</span><span class="s3">Certification</span><span class="s2">&lt;/h3&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s2">"flex justify-between items-start border-t border-black pt-4"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>&lt;p className=</span><span class="s4">"font-bold text-lg"</span><span class="s2">&gt;</span><span class="s3">Google</span><span class="s2"> </span><span class="s3">Data</span><span class="s2"> </span><span class="s3">Analytics</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>&lt;p className=</span><span class="s4">"text-neutral-600"</span><span class="s2">&gt;</span><span class="s3">Professional</span><span class="s2"> </span><span class="s3">Certificate</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span>&lt;p className=</span><span class="s4">"font-mono text-sm"</span><span class="s2">&gt;</span><span class="s7">2021</span><span class="s2">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">             </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/section&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span>{</span><span class="s2">/* CONTACT SECTION */</span><span class="s5">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;section id=</span><span class="s4">"contact"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"bg-black text-white p-8 md:p-20 relative overflow-hidden"</span><span class="s5">&gt;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">             </span>{</span><span class="s2">/* Decorative big text */</span><span class="s5">}</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">             </span>&lt;div className=</span><span class="s2">"absolute -top-10 -right-10 text-neutral-800 font-black text-9xl opacity-20 pointer-events-none select-none"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">               </span></span><span class="s3">CONTACT</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">             </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">             </span>&lt;h2 className=</span><span class="s2">"text-5xl md:text-7xl font-bold uppercase mb-12 relative z-10"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">               </span></span><span class="s3">Let</span><span class="s2">'s Work&lt;br/&gt;Together</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">             </span>&lt;/h2&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">             </span></span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">             </span>&lt;div className=</span><span class="s2">"grid md:grid-cols-2 gap-12 relative z-10"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s4">"space-y-8"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;a href={</span><span class="s2">`mailto:</span><span class="s5">${portfolioData.email}</span><span class="s2">`</span><span class="s5">} className=</span><span class="s2">"group block border-b border-white/20 pb-8 hover:border-white transition-colors"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                    </span>&lt;p className=</span><span class="s2">"text-sm font-bold uppercase tracking-widest text-neutral-400 mb-2"</span><span class="s5">&gt;</span><span class="s3">Email</span><span class="s5">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;div className=</span><span class="s4">"flex items-center justify-between"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                      </span>&lt;span className=</span><span class="s4">"text-xl md:text-2xl break-all"</span><span class="s2">&gt;{portfolioData.email}&lt;/span&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                      </span>&lt;</span><span class="s3">ArrowUpRight</span><span class="s5"> className=</span><span class="s2">"opacity-0 group-hover:opacity-100 transition-opacity"</span><span class="s5"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/a&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">                  </span></span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;a href={</span><span class="s2">`tel:</span><span class="s5">${portfolioData.phone}</span><span class="s2">`</span><span class="s5">} className=</span><span class="s2">"group block border-b border-white/20 pb-8 hover:border-white transition-colors"</span><span class="s5">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                    </span>&lt;p className=</span><span class="s2">"text-sm font-bold uppercase tracking-widest text-neutral-400 mb-2"</span><span class="s5">&gt;</span><span class="s3">Phone</span><span class="s5">&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;div className=</span><span class="s4">"flex items-center justify-between"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                      </span>&lt;span className=</span><span class="s4">"text-xl md:text-2xl"</span><span class="s2">&gt;{portfolioData.phone}&lt;/span&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                      </span>&lt;</span><span class="s3">ArrowUpRight</span><span class="s5"> className=</span><span class="s2">"opacity-0 group-hover:opacity-100 transition-opacity"</span><span class="s5"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/a&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                </span>&lt;div className=</span><span class="s2">"flex flex-col justify-end items-start md:items-end"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;div className=</span><span class="s4">"flex gap-4"</span><span class="s2">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                     </span>&lt;a href=</span><span class="s2">"#"</span><span class="s5"> className=</span><span class="s2">"w-12 h-12 bg-white text-black flex items-center justify-center rounded-full hover:bg-neutral-200 transition-colors"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                       </span>&lt;</span><span class="s3">Linkedin</span><span class="s2"> size={</span><span class="s7">20</span><span class="s2">} /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>&lt;/a&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">                     </span>&lt;a href=</span><span class="s2">"#"</span><span class="s5"> className=</span><span class="s2">"w-12 h-12 border border-white text-white flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors"</span><span class="s5">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                       </span>&lt;</span><span class="s3">Download</span><span class="s2"> size={</span><span class="s7">20</span><span class="s2">} /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span>&lt;/a&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;p className=</span><span class="s4">"mt-8 text-neutral-500 text-sm"</span><span class="s2">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span></span><span class="s9">©</span><span class="s2"> </span><span class="s7">2026</span><span class="s2"> </span><span class="s3">Abhay</span><span class="s2"> </span><span class="s3">Bhattacharjee</span><span class="s2">. </span><span class="s3">All</span><span class="s2"> rights reserved.</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">             </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/section&gt;</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>&lt;/main&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>);</span></p>
-<p class="p1"><span class="s2">};</span></p>
-<p class="p5"><span class="s6"></span><br></p>
-<p class="p2"><span class="s2">export</span><span class="s5"> </span><span class="s2">default</span><span class="s5"> </span><span class="s3">App</span><span class="s5">;</span></p>
-</body>
-</html>
+import React, { useState, useEffect } from 'react';
+import { 
+  ArrowUpRight, 
+  Mail, 
+  Linkedin, 
+  Download,
+  MapPin,
+  Phone,
+  ArrowRight,
+  Minus
+} from 'lucide-react';
+
+const App = () => {
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'experience', 'expertise', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top >= 0 && rect.top <= 300;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const portfolioData = {
+    name: "Abhay Bhattacharjee",
+    role: "Operations Manager",
+    subRole: "Strategic Leader & Data Analyst",
+    location: "Indore, MP",
+    email: "abhav.bhattacharjee@outlook.com",
+    phone: "(+91) 934-000-7822",
+    linkedin: "linkedin.com/in/abhay",
+    about: "Decisive Operations Manager driving revenue growth and optimizing performance. Expert in aligning operational priorities with corporate objectives through data-driven strategies.",
+    skills: [
+      "Strategic Management", "Operations Management", "PowerBI", "Tableau", 
+      "Looker Studio", "Data Analysis", "Salesforce", "Power Automate", 
+      "AI Integration", "Risk Management"
+    ],
+    experience: [
+      {
+        id: 1,
+        company: "TaskUs",
+        period: "2023 - Present",
+        role: "Operations Manager",
+        description: "Spearheading a team of 150+ teammates and 10 team leaders.",
+        achievements: [
+          "Optimized operational performance through precise forecasting.",
+          "Introduced and established the Phone Line of Business.",
+          "Reduced attrition by 4% month-over-month.",
+          "Improved ESAT scores by approximately 47.5%."
+        ]
+      },
+      {
+        id: 2,
+        company: "TaskUs",
+        period: "2021 - 2023",
+        role: "Operations Team Leader",
+        description: "Championed a team of ~21 teammates focused on high-quality service.",
+        achievements: [
+          "Exceeded First Call Resolution (FCR) goals by ~4.8%.",
+          "Enhanced client satisfaction via proactive resolutions.",
+          "Implemented automation using Connectors and AppScripts."
+        ]
+      },
+      {
+        id: 3,
+        company: "TaskUs",
+        period: "2020 - 2021",
+        role: "Teammate",
+        description: "Foundational role focusing on service excellence.",
+        achievements: [
+          "Awarded 'Best Teamleader, Year 2020'.",
+          "Recognized for outstanding performance early in tenure."
+        ]
+      },
+      {
+        id: 4,
+        company: "Gun Carriage Factory",
+        period: "2018 - 2020",
+        role: "Apprenticeship",
+        description: "Technical apprenticeship in precision machining.",
+        achievements: [
+          "Gained hands-on experience in industrial manufacturing."
+        ]
+      }
+    ]
+  };
+
+  return (
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+      
+      {/* Sticky Header */}
+      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b-2 border-black">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+          <div className="text-lg font-bold tracking-tighter uppercase">
+            AB<span className="text-neutral-400">.</span>26
+          </div>
+          <div className="hidden md:flex space-x-12 text-sm font-bold uppercase tracking-widest">
+            {['Experience', 'Expertise', 'Contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className="hover:text-neutral-500 transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <a href={`mailto:${portfolioData.email}`} className="bg-black text-white px-5 py-2 text-sm font-bold uppercase hover:bg-neutral-800 transition-colors">
+            Hire Me
+          </a>
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        
+        {/* HERO SECTION */}
+        <section id="home" className="mb-32">
+          <div className="border-b-2 border-black pb-12">
+            <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.9] mb-8 uppercase break-words">
+              Abhay<br/>Bhattacharjee
+            </h1>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <p className="text-xl md:text-3xl font-medium max-w-2xl leading-tight">
+                {portfolioData.role} & <br/>
+                {portfolioData.subRole}
+              </p>
+              
+              <div className="flex flex-col gap-2 text-sm font-mono text-neutral-600 md:text-right">
+                <span className="flex items-center gap-2 md:justify-end">
+                  <MapPin size={14}/> {portfolioData.location}
+                </span>
+                <span className="flex items-center gap-2 md:justify-end">
+                  <Phone size={14}/> {portfolioData.phone}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {/* About Blurb */}
+          <div className="grid md:grid-cols-12 gap-8 pt-12">
+            <div className="md:col-span-3 text-sm font-bold uppercase tracking-widest text-neutral-400">
+              01 / Profile
+            </div>
+            <div className="md:col-span-9">
+              <p className="text-2xl md:text-4xl font-light leading-snug">
+                {portfolioData.about}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* EXPERIENCE SECTION */}
+        <section id="experience" className="mb-32">
+           <div className="border-t-2 border-black pt-4 mb-16">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400">
+              02 / Professional History
+            </h2>
+          </div>
+
+          <div className="space-y-0 divide-y divide-neutral-200">
+            {portfolioData.experience.map((job) => (
+              <div key={job.id} className="grid md:grid-cols-12 gap-8 py-12 group hover:bg-neutral-50 transition-colors">
+                {/* Date Column */}
+                <div className="md:col-span-3">
+                  <span className="font-mono text-sm border border-black px-3 py-1 rounded-full">
+                    {job.period}
+                  </span>
+                </div>
+                
+                {/* Role & Company */}
+                <div className="md:col-span-4">
+                  <h3 className="text-2xl font-bold uppercase mb-1">{job.company}</h3>
+                  <p className="text-lg text-neutral-600 font-medium">{job.role}</p>
+                </div>
+
+                {/* Details */}
+                <div className="md:col-span-5">
+                   <p className="text-lg mb-6 leading-relaxed">
+                     {job.description}
+                   </p>
+                   <ul className="space-y-3">
+                     {job.achievements.map((achievement, idx) => (
+                       <li key={idx} className="flex items-start gap-3 text-sm text-neutral-600">
+                         <Minus size={16} className="mt-0.5 flex-shrink-0 text-black" />
+                         {achievement}
+                       </li>
+                     ))}
+                   </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* EXPERTISE SECTION */}
+        <section id="expertise" className="mb-32">
+          <div className="border-t-2 border-black pt-4 mb-16">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-400">
+              03 / Core Competencies
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-black border-2 border-black">
+            {portfolioData.skills.map((skill, idx) => (
+              <div key={idx} className="bg-white p-6 md:p-10 h-full flex items-center justify-center text-center hover:invert transition-all duration-300">
+                <span className="font-bold text-lg md:text-xl">{skill}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 mt-12 gap-12">
+             <div className="bg-neutral-100 p-8 border border-neutral-200">
+                <h3 className="text-xl font-bold uppercase mb-4">Education</h3>
+                <div className="flex justify-between items-start border-t border-black pt-4">
+                   <div>
+                     <p className="font-bold text-lg">Bachelor of Commerce</p>
+                     <p className="text-neutral-600">Applied Economics & Finance</p>
+                   </div>
+                   <p className="font-mono text-sm">2017</p>
+                </div>
+                <p className="mt-2 text-sm text-neutral-500">St. Aloysius Autonomous College</p>
+             </div>
+
+             <div className="bg-neutral-100 p-8 border border-neutral-200">
+                <h3 className="text-xl font-bold uppercase mb-4">Certification</h3>
+                <div className="flex justify-between items-start border-t border-black pt-4">
+                   <div>
+                     <p className="font-bold text-lg">Google Data Analytics</p>
+                     <p className="text-neutral-600">Professional Certificate</p>
+                   </div>
+                   <p className="font-mono text-sm">2021</p>
+                </div>
+             </div>
+          </div>
+        </section>
+
+        {/* CONTACT SECTION */}
+        <section id="contact">
+          <div className="bg-black text-white p-8 md:p-20 relative overflow-hidden">
+             {/* Decorative big text */}
+             <div className="absolute -top-10 -right-10 text-neutral-800 font-black text-9xl opacity-20 pointer-events-none select-none">
+               CONTACT
+             </div>
+
+             <h2 className="text-5xl md:text-7xl font-bold uppercase mb-12 relative z-10">
+               Let's Work<br/>Together
+             </h2>
+             
+             <div className="grid md:grid-cols-2 gap-12 relative z-10">
+                <div className="space-y-8">
+                  <a href={`mailto:${portfolioData.email}`} className="group block border-b border-white/20 pb-8 hover:border-white transition-colors">
+                    <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-2">Email</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xl md:text-2xl break-all">{portfolioData.email}</span>
+                      <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </a>
+                  
+                  <a href={`tel:${portfolioData.phone}`} className="group block border-b border-white/20 pb-8 hover:border-white transition-colors">
+                    <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-2">Phone</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xl md:text-2xl">{portfolioData.phone}</span>
+                      <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </a>
+                </div>
+
+                <div className="flex flex-col justify-end items-start md:items-end">
+                  <div className="flex gap-4">
+                     <a href="#" className="w-12 h-12 bg-white text-black flex items-center justify-center rounded-full hover:bg-neutral-200 transition-colors">
+                       <Linkedin size={20} />
+                     </a>
+                     <a href="#" className="w-12 h-12 border border-white text-white flex items-center justify-center rounded-full hover:bg-white hover:text-black transition-colors">
+                       <Download size={20} />
+                     </a>
+                  </div>
+                  <p className="mt-8 text-neutral-500 text-sm">
+                    © 2026 Abhay Bhattacharjee. All rights reserved.
+                  </p>
+                </div>
+             </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  );
+};
+
+export default App;
