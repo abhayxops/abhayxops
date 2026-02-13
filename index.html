@@ -3,448 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhay Bhattacharjee | Operations Manager</title>
+    <title>Abhay Bhattacharjee - Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Theming */
-        :root {
-            /* Light Theme (Default) */
-            --bg-gradient-start: #e0f7fa;
-            --bg-gradient-mid: #b2ebf2;
-            --bg-gradient-end: #80deea;
-            --text-primary: #1e293b;
-            --text-secondary: #475569;
-            --glass-panel-bg: rgba(255, 255, 255, 0.25);
-            --glass-card-bg: rgba(255, 255, 255, 0.15);
-            --glass-card-hover: rgba(255, 255, 255, 0.35);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --accent-color: #0ea5e9;
-            --accent-bg: #e0f2fe;
-            --pill-bg: rgba(255, 255, 255, 0.4);
-            --nav-bg: rgba(255, 255, 255, 0.6);
-        }
-
-        [data-theme="grey"] {
-            /* Grey/Dark Theme */
-            --bg-gradient-start: #0f172a;
-            --bg-gradient-mid: #1e293b;
-            --bg-gradient-end: #334155;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --glass-panel-bg: rgba(0, 0, 0, 0.2);
-            --glass-card-bg: rgba(255, 255, 255, 0.03);
-            --glass-card-hover: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-color: #38bdf8;
-            --accent-bg: rgba(56, 189, 248, 0.1);
-            --pill-bg: rgba(255, 255, 255, 0.05);
-            --nav-bg: rgba(15, 23, 42, 0.6);
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
             min-height: 100vh;
-            color: var(--text-primary);
-            background-attachment: fixed;
-            transition: color 0.3s ease, background 0.3s ease;
+            color: #e2e8f0;
         }
 
         /* Glassmorphism Utilities */
         .glass-panel {
-            background: var(--glass-panel-bg);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .glass-card {
-            background: var(--glass-card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
-            background: var(--glass-card-hover);
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .glass-nav {
-             background: var(--nav-bg);
-             backdrop-filter: blur(12px);
-             border: 1px solid var(--glass-border);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(156, 163, 175, 0.5);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(156, 163, 175, 0.8);
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #22d3ee, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Skill Pill Animation */
-        .skill-pill {
-            background: var(--pill-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-        }
-        
-        /* Force text color override for specificity */
-        [data-theme="grey"] .skill-pill {
-            color: #e2e8f0;
-        }
-
-        .skill-pill:hover {
-            background-color: var(--accent-color);
-            color: white !important;
-            border-color: var(--accent-color);
-        }
-
-        /* Typography overrides for theme */
-        h1, h2, h3, h4, .font-bold {
-            color: var(--text-primary);
-        }
-        p, li, .text-slate-600, .text-slate-500 {
-            color: var(--text-secondary);
-        }
-        
-        /* Icon colors */
-        .icon-accent {
-            color: var(--accent-color);
-        }
-        .icon-bg {
-            background-color: var(--accent-bg);
-            color: var(--accent-color);
-        }
-
-        /* Theme Toggle Button */
-        .theme-toggle {
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-        .theme-toggle:hover {
-            background: rgba(255,255,255,0.2);
+        /* Print Adjustments */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .glass-panel, .glass-card {
+                background: none;
+                backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+                color: #000;
+            }
+            .text-indigo-300, .text-blue-300 {
+                color: #2563eb !important;
+            }
+            .text-slate-300, .text-slate-400 {
+                color: #475569 !important;
+            }
+            a { text-decoration: none; color: #000; }
         }
     </style>
 </head>
-<body class="selection:bg-cyan-200 selection:text-cyan-900 pb-12">
+<body class="p-4 md:p-10 flex justify-center items-start">
 
-    <!-- Navigation / Header -->
-    <header class="sticky top-0 z-50 transition-all duration-300">
-        <div class="glass-nav mx-auto max-w-6xl mt-4 rounded-full px-6 py-3 flex justify-between items-center">
-            <div class="font-bold text-xl tracking-tight">
-                <span class="text-cyan-500">A</span>B
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium" style="color: var(--text-secondary)">
-                <a href="#about" class="hover:text-cyan-500 transition-colors">About</a>
-                <a href="#experience" class="hover:text-cyan-500 transition-colors">Experience</a>
-                <a href="#skills" class="hover:text-cyan-500 transition-colors">Skills</a>
-                <a href="#education" class="hover:text-cyan-500 transition-colors">Education</a>
-            </nav>
-            <div class="flex items-center gap-4">
-                <button id="themeToggle" class="theme-toggle text-slate-500 hover:text-cyan-500 transition-colors" aria-label="Toggle Theme">
-                    <i class="fas fa-moon text-lg" id="themeIcon"></i>
-                </button>
-                <a href="mailto:abhav.bhattacharjee@outlook.com" class="px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-semibold shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all transform hover:-translate-y-0.5">
-                    Contact Me
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="max-w-5xl mx-auto px-6 mt-16 md:mt-24 mb-16 text-center md:text-left">
-        <div class="glass-panel rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center">
-            <div class="flex-1 space-y-6 w-full">
-                <div class="inline-block px-3 py-1 rounded-full icon-bg text-xs font-bold uppercase tracking-wider mb-2 border border-cyan-200/30">
-                    Operations Management Professional
-                </div>
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-                    Hello, I'm <br>
-                    <span class="text-gradient">Abhay Bhattacharjee</span>
-                </h1>
-                <p class="text-lg leading-relaxed max-w-2xl">
-                    Dynamic professional with extensive experience in Strategic and Operations Management. Adept at optimizing performance, enhancing client relationships, and driving revenue growth through innovative quality initiatives.
-                </p>
-                
-                <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
-                    <div class="flex items-center gap-2 text-sm bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur-sm">
-                        <i class="fas fa-map-marker-alt icon-accent"></i>
-                        <span>Indore, MP</span>
-                    </div>
-                    <div class="flex items-center gap-2 text-sm bg-white/10 px-4 py-2 rounded-lg border border-white/20 backdrop-blur-sm">
-                        <i class="fas fa-phone icon-accent"></i>
-                        <span>(+91) 934-000-7822</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Main Container -->
+    <div class="glass-panel w-full max-w-5xl rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
         
-        <!-- Left Column: Experience (Main Content) -->
-        <div class="md:col-span-2 space-y-8">
+        <!-- Left Sidebar (Profile & Skills) -->
+        <aside class="w-full md:w-1/3 bg-black/20 p-8 flex flex-col gap-8 border-r border-white/5">
             
-            <!-- Section Header -->
-            <div class="flex items-center gap-4 mb-2" id="experience">
-                <div class="h-10 w-10 rounded-xl icon-bg flex items-center justify-center">
-                    <i class="fas fa-briefcase text-lg"></i>
-                </div>
-                <h2 class="text-2xl font-bold">Work Experience</h2>
-            </div>
-
-            <!-- Job 1 -->
-            <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-24 h-24 icon-bg rounded-bl-full -mr-4 -mt-4 opacity-50 transition-transform group-hover:scale-110"></div>
+            <!-- Profile Header -->
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl font-bold text-white mb-2 tracking-tight">Abhay Bhattacharjee</h1>
+                <p class="text-indigo-300 text-lg font-medium mb-6">Operations Manager &<br>Technical Systems Specialist</p>
                 
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4 relative z-10">
-                    <div>
-                        <h3 class="text-xl font-bold">Operations Manager</h3>
-                        <div class="icon-accent font-medium">TaskUs</div>
+                <div class="flex flex-col gap-3 text-sm text-slate-300">
+                    <a href="tel:+919340007822" class="hover:text-white transition-colors flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="fas fa-phone"></i></div>
+                        (+91) 934-000-7822
+                    </a>
+                    <a href="mailto:abhay.bhattacharjee@outlook.com" class="hover:text-white transition-colors flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="fas fa-envelope"></i></div>
+                        abhay.bhattacharjee@outlook.com
+                    </a>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="fas fa-map-marker-alt"></i></div>
+                        Indore, Madhya Pradesh
                     </div>
-                    <div class="mt-1 md:mt-0 text-sm font-medium bg-white/10 px-3 py-1 rounded-full inline-block border border-white/20 backdrop-blur-sm">
-                        2023 - Present
-                    </div>
-                </div>
-                
-                <p class="mb-4 text-sm leading-relaxed">
-                    Spearheaded a team of 150+ teammates and 10 team leaders. Focused on fraud escalations, phone, and chat lines of business.
-                </p>
-
-                <ul class="space-y-3">
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Reduced attrition by 4%/month for two consecutive months (Best in Phone LOB).</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Improved ESAT (Employee Satisfaction) by ~47.5%.</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Optimized performance via precise forecasting & workforce planning.</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Facilitated client business reviews to strengthen partnerships.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Job 2 -->
-            <div class="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden group">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                    <div>
-                        <h3 class="text-xl font-bold">Operations Team Leader</h3>
-                        <div class="icon-accent font-medium">TaskUs</div>
-                    </div>
-                    <div class="mt-1 md:mt-0 text-sm font-medium bg-white/10 px-3 py-1 rounded-full inline-block border border-white/20 backdrop-blur-sm">
-                        2021 - 2023
-                    </div>
-                </div>
-                
-                <p class="mb-4 text-sm leading-relaxed">
-                    Championed a team of ~21 teammates, ensuring adherence to standards and enhancing client satisfaction.
-                </p>
-
-                <ul class="space-y-3">
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Exceeded FCR (First Call Resolution) goal by ~4.8%.</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Focused on automating repetitive tasks using Connectors, Addons, and AppScripts.</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm">
-                        <i class="fas fa-check-circle icon-accent mt-1"></i>
-                        <span>Contributed to process improvement initiatives for better delivery timelines.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Job 3 -->
-            <div class="glass-card rounded-2xl p-6 md:p-8">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                    <div>
-                        <h3 class="text-lg font-bold">Teammate (SME)</h3>
-                        <div class="icon-accent font-medium">TaskUs</div>
-                    </div>
-                    <div class="mt-1 md:mt-0 text-sm font-medium bg-white/10 px-3 py-1 rounded-full inline-block border border-white/20 backdrop-blur-sm">
-                        2020 - 2021
-                    </div>
-                </div>
-                <p class="text-sm">
-                    Focused on operational excellence and team support.
-                </p>
-            </div>
-
-            <!-- Job 4 -->
-            <div class="glass-card rounded-2xl p-6 md:p-8 opacity-90">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                        <h3 class="text-lg font-bold">Apprenticeship - Machinist</h3>
-                        <div class="icon-accent font-medium">Gun Carriage Factory, Jabalpur</div>
-                    </div>
-                    <div class="mt-1 md:mt-0 text-sm font-medium bg-white/10 px-3 py-1 rounded-full inline-block border border-white/20 backdrop-blur-sm">
-                        2018 - 2020
-                    </div>
+                    <a href="https://www.linkedin.com/in/abhaybhattacharjee/" target="_blank" class="hover:text-white transition-colors flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="fab fa-linkedin-in"></i></div>
+                        linkedin.com/in/abhay
+                    </a>
+                    <a href="https://abhayxops.github.io/abhayxops/" target="_blank" class="hover:text-white transition-colors flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center"><i class="fas fa-globe"></i></div>
+                        abhayxops.github.io
+                    </a>
                 </div>
             </div>
-
-        </div>
-
-        <!-- Right Column: Skills & Education -->
-        <div class="md:col-span-1 space-y-8">
 
             <!-- Skills Section -->
-            <div class="glass-panel rounded-3xl p-6" id="skills">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-8 w-8 rounded-lg icon-bg flex items-center justify-center">
-                        <i class="fas fa-layer-group text-sm"></i>
-                    </div>
-                    <h2 class="text-lg font-bold">Key Skills</h2>
-                </div>
-
-                <div class="space-y-6">
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-4 border-b border-white/10 pb-2">Technical Skills</h3>
+                
+                <div class="space-y-4">
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider mb-3 opacity-60">Data & Analytics</h4>
+                        <h4 class="font-semibold text-white text-sm mb-2">Data & Analytics</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">PowerBI</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Tableau</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Looker Studio</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Google Data Analytics</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Looker Studio</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Power BI</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Tableau</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">BigQuery</span>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider mb-3 opacity-60">Technical Tools</h4>
+                        <h4 class="font-semibold text-white text-sm mb-2">Automation & Scripting</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Salesforce</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">AppScripts</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Power Automate</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">AI Integration</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">G-Suite</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Google AppScripts</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Power Automate</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Zapier</span>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider mb-3 opacity-60">Management</h4>
+                        <h4 class="font-semibold text-white text-sm mb-2">Admin & Platforms</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Incident Management</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Risk Management</span>
-                            <span class="skill-pill px-3 py-1 text-xs font-medium rounded-md cursor-default">Product Management</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Salesforce Admin</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">Google Workspace</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">SSO/IAM</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition cursor-default">JIRA</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Education Section -->
-            <div class="glass-panel rounded-3xl p-6" id="education">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-8 w-8 rounded-lg icon-bg flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-sm"></i>
-                    </div>
-                    <h2 class="text-lg font-bold">Education</h2>
+            <!-- Education -->
+            <div>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-4 border-b border-white/10 pb-2">Education</h3>
+                <div class="mb-4">
+                    <h4 class="text-white font-medium">Google Data Analytics</h4>
+                    <p class="text-slate-400 text-sm">Professional Certification, 2021</p>
                 </div>
-
-                <div class="relative border-l-2 border-slate-200/30 pl-4 space-y-6 ml-2">
-                    
-                    <div class="relative">
-                        <div class="absolute -left-[21px] top-1.5 h-3 w-3 rounded-full bg-cyan-400 border-2 border-white shadow-sm"></div>
-                        <h3 class="text-sm font-bold">B.Com, Applied Economics</h3>
-                        <p class="text-xs opacity-70 mb-1">St. Aloysius Autonomous College</p>
-                        <span class="text-[10px] font-semibold bg-slate-100/10 border border-slate-200/20 px-2 py-0.5 rounded">2014 - 2017</span>
-                    </div>
-
-                    <div class="relative">
-                        <div class="absolute -left-[21px] top-1.5 h-3 w-3 rounded-full bg-slate-300 border-2 border-white shadow-sm"></div>
-                        <h3 class="text-sm font-bold">Secondary School</h3>
-                        <p class="text-xs opacity-70 mb-1">St. Gabriels' Sr. Sec. School</p>
-                        <span class="text-[10px] font-semibold bg-slate-100/10 border border-slate-200/20 px-2 py-0.5 rounded">2014</span>
-                    </div>
-
+                <div>
+                    <h4 class="text-white font-medium">Bachelor of Commerce</h4>
+                    <p class="text-slate-400 text-sm">Applied Economics & Finance</p>
+                    <p class="text-slate-500 text-xs">St. Aloysius College, 2014-2017</p>
                 </div>
             </div>
 
-            <!-- Certifications -->
-             <div class="glass-panel rounded-3xl p-6">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="h-8 w-8 rounded-lg icon-bg flex items-center justify-center">
-                        <i class="fas fa-certificate text-sm"></i>
-                    </div>
-                    <h2 class="text-lg font-bold">Certifications</h2>
-                </div>
-                <div class="flex items-start gap-3 p-3 bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="w-6 h-6 mt-0.5">
-                    <div>
-                        <h4 class="text-sm font-semibold">Google Data Analytics</h4>
-                        <p class="text-xs opacity-70">2021</p>
-                    </div>
-                </div>
-            </div>
+        </aside>
 
-        </div>
-    </main>
-
-    <footer class="text-center mt-20 opacity-60 text-sm py-8 border-t border-slate-200/20">
-        <p>&copy; 2026 Abhay Bhattacharjee | All rights reserved.</p>
-    </footer>
-
-    <script>
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const body = document.body;
-
-        // Check local storage for preference
-        const savedTheme = localStorage.getItem('portfolio-theme');
-        if (savedTheme === 'grey') {
-            body.setAttribute('data-theme', 'grey');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-            themeIcon.classList.add('text-yellow-400');
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
+        <!-- Right Content (Experience & Projects) -->
+        <main class="w-full md:w-2/3 p-8 md:p-10">
             
-            if (currentTheme === 'grey') {
-                body.removeAttribute('data-theme');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-                themeIcon.classList.remove('text-yellow-400');
-                localStorage.setItem('portfolio-theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'grey');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-                themeIcon.classList.add('text-yellow-400');
-                localStorage.setItem('portfolio-theme', 'grey');
-            }
-        });
-    </script>
+            <!-- Summary -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-bold text-white mb-4">Technical Summary</h2>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                    Dynamic Operations Leader and Data Analyst with a strong focus on technical process automation, data-driven decision-making, and AI integration. Expert in optimizing operational workflows using AppScripts, Power Automate, and Looker Studio. Proven track record in incident management, technical documentation engineering, and leveraging advanced visualization tools to drive revenue growth.
+                </p>
+            </section>
+
+            <!-- Experience -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-sm"><i class="fas fa-briefcase"></i></span>
+                    Professional Experience
+                </h2>
+
+                <!-- Job 1 -->
+                <div class="glass-card p-6 rounded-2xl mb-6">
+                    <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Operations Manager</h3>
+                            <p class="text-indigo-300">TaskUs | Indore, MP</p>
+                        </div>
+                        <span class="text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-slate-300">2023 – Present</span>
+                    </div>
+                    <ul class="space-y-3 text-slate-300 text-sm list-none">
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>SOP & Documentation Engineering:</strong> Engineered and standardized comprehensive technical SOPs for AI tool integrations (Sapling AI, Gemini), creating a unified knowledge base that reduced procedural errors by 30%.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>Technical Account Management:</strong> Acted as primary technical liaison for enterprise clients, leading Quarterly Business Reviews (QBRs) to present data-driven insights and drive adoption of automation features.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>Infrastructure & Access Management:</strong> Oversee lifecycle of user accounts across Salesforce and G-Suite (provisioning, deprovisioning, access reviews) ensuring strict security compliance.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>Workflow Automation:</strong> Designed scripts using AppScripts and Power Automate to mirror SSO functionality, streamlining user productivity.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>Security & L2 Support:</strong> Directed specialized teams in handling technical Fraud Escalations and maintained "audit-ready" records for data compliance.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="glass-card p-6 rounded-2xl mb-6">
+                    <div class="flex justify-between items-start mb-4 flex-wrap gap-2">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Operations Team Leader</h3>
+                            <p class="text-indigo-300">TaskUs</p>
+                        </div>
+                        <span class="text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-slate-300">2021 – 2023</span>
+                    </div>
+                    <ul class="space-y-3 text-slate-300 text-sm list-none">
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>Process Automation:</strong> Spearheaded automation of repetitive tasks by deploying custom Connectors and AppScripts.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i class="fas fa-check-circle text-indigo-400 mt-1"></i>
+                            <span><strong>Incident Resolution:</strong> Enhanced service quality through proactive technical issue resolution and advanced troubleshooting of delivery timelines.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex gap-4">
+                     <!-- Job 3 Summary -->
+                    <div class="glass-card p-4 rounded-xl flex-1">
+                        <h4 class="text-white font-semibold">Teammate</h4>
+                        <p class="text-xs text-slate-400">TaskUs | 2020 – 2021</p>
+                    </div>
+                    <!-- Job 4 Summary -->
+                    <div class="glass-card p-4 rounded-xl flex-1">
+                        <h4 class="text-white font-semibold">Machinist Apprentice</h4>
+                        <p class="text-xs text-slate-400">Gun Carriage Factory | 2018 – 2020</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Technical Projects -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-sm"><i class="fas fa-code-branch"></i></span>
+                    Key Technical Projects
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-4 rounded-xl">
+                        <h4 class="text-indigo-300 font-bold mb-1">AI Tool Integration</h4>
+                        <p class="text-slate-400 text-xs mb-2">Sapling AI, Gemini, Formalizer</p>
+                        <p class="text-slate-300 text-sm">Created standardized SOPs and operational workflows for improved conversational flow.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h4 class="text-indigo-300 font-bold mb-1">Network Monitoring</h4>
+                        <p class="text-slate-400 text-xs mb-2">Heartbeat Tool</p>
+                        <p class="text-slate-300 text-sm">Deployed monitoring to identify and categorize non-productive proxy websites and ensure compliance.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h4 class="text-indigo-300 font-bold mb-1">Observe.AI Standardization</h4>
+                        <p class="text-slate-400 text-xs mb-2">Process Engineering</p>
+                        <p class="text-slate-300 text-sm">Collaborated with stakeholders to document protocols ensuring consistent service delivery across vendors.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl">
+                        <h4 class="text-indigo-300 font-bold mb-1">Cloud Telephony</h4>
+                        <p class="text-slate-400 text-xs mb-2">Amazon Connect / Sanas</p>
+                        <p class="text-slate-300 text-sm">Managed integration testing for Amazon Cloud Connect and configuration of Noise Cancellation tools.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
 </body>
 </html>
