@@ -1,463 +1,488 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhay Bhattacharjee | Operations & Data Analyst</title>
+    <title>Abhay Bhattacharjee | Operations & Data Leader</title>
     
-    <!-- Tailwind CSS for layout utilities -->
+    <!-- Fonts: Inter for body, JetBrains Mono for code/tech feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Config for Tech Theme -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151e2e', // Custom darker slate
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        neon: {
+                            cyan: '#22d3ee',
+                            purple: '#a855f7',
+                            green: '#4ade80',
+                            blue: '#3b82f6'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'typewriter': 'typewriter 2s steps(40) 1s 1 normal both',
+                        'blink': 'blink 1s step-end infinite',
+                    },
+                    keyframes: {
+                        typewriter: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* --- CSS Variables & Theming --- */
-        :root {
-            --font-main: 'Inter', sans-serif;
-            
-            /* Day Mode Defaults */
-            --bg-gradient: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                           radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                           radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-            --bg-color: #f0f2f5;
-            --text-primary: #1a202c;
-            --text-secondary: #4a5568;
-            --glass-bg: rgba(255, 255, 255, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-            --accent-color: #4f46e5; /* Indigo-600 */
-            --card-hover: rgba(255, 255, 255, 0.8);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
         }
 
-        [data-theme="dark"] {
-            /* Night Mode Defaults */
-            --bg-color: #0f172a;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --glass-bg: rgba(30, 41, 59, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            --accent-color: #818cf8; /* Indigo-400 */
-            --card-hover: rgba(30, 41, 59, 0.8);
-        }
-
-        /* --- Global Styles --- */
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            transition: background-color 0.5s ease, color 0.3s ease;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background Blobs */
-        .blob-cont {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: float 10s infinite ease-in-out alternate;
-        }
-
-        .blob-1 { background: #4f46e5; width: 500px; height: 500px; top: -100px; left: -100px; }
-        .blob-2 { background: #ec4899; width: 400px; height: 400px; bottom: -50px; right: -50px; animation-delay: -5s; }
-        .blob-3 { background: #06b6d4; width: 300px; height: 300px; bottom: 20%; left: 20%; animation-duration: 15s; }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 50px) scale(1.1); }
-        }
-
-        /* --- Glass Components --- */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .glass-panel:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        /* --- Theme Toggle Switch --- */
-        .theme-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 50;
-            cursor: pointer;
-            width: 60px;
-            height: 30px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            padding: 2px;
-            box-shadow: var(--glass-shadow);
-            backdrop-filter: blur(4px);
-        }
-
-        .switch-handle {
-            width: 26px;
-            height: 26px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        [data-theme="dark"] .switch-handle {
-            transform: translateX(30px);
-        }
-
-        /* --- Typography & Specifics --- */
-        h1, h2, h3 { font-weight: 700; letter-spacing: -0.025em; }
-        h1 { color: var(--text-primary); }
-        h2 { color: var(--accent-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-        
-        .text-sec { color: var(--text-secondary); }
-        
-        .skill-tag {
-            background: rgba(var(--accent-color), 0.1);
-            border: 1px solid var(--glass-border);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            color: var(--text-primary);
-            display: inline-flex;
-            align-items: center;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: background 0.2s;
-        }
-        
-        .skill-tag:hover {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s;
-            font-size: 0.95rem;
-        }
-        
-        .contact-link:hover { color: var(--accent-color); }
-
-        /* Timeline for Experience */
-        .timeline-item {
-            position: relative;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--glass-border);
-            padding-bottom: 2rem;
-        }
-        
-        .timeline-item:last-child { border-left: none; padding-bottom: 0; }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -9px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            border: 4px solid var(--bg-color); /* Creates the "ring" effect */
-        }
-
-        /* Smooth reveal animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: revealAnim 0.8s ease forwards;
-        }
-
-        @keyframes revealAnim {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Stagger animations */
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-
+        /* Print Styles */
         @media print {
-            .theme-switch, .blob-cont { display: none; }
-            body { background: white; color: black; }
-            .glass-panel { box-shadow: none; border: 1px solid #ddd; backdrop-filter: none; background: white; }
+            body {
+                background-color: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-border {
+                border: 1px solid #ddd;
+            }
+            .bg-slate-900, .bg-slate-800, .bg-slate-950 {
+                background-color: white !important;
+            }
+            .text-slate-300, .text-slate-400 {
+                color: #444 !important;
+            }
+            .text-neon-cyan, .text-neon-purple, .text-neon-green {
+                color: #000 !important;
+                font-weight: bold;
+            }
+            a {
+                text-decoration: underline;
+                color: #000;
+            }
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .code-block {
+            position: relative;
+            background: #0f172a;
+            border-radius: 0.5rem;
+            border: 1px solid #1e293b;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #a855f7, rgba(0,0,0,0));
         }
     </style>
 </head>
-<body class="p-4 md:p-12">
+<body class="bg-slate-950 text-slate-300 font-sans antialiased selection:bg-neon-cyan selection:text-slate-900">
 
-    <!-- Background Blobs -->
-    <div class="blob-cont">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] opacity-20 pointer-events-none" 
+         style="background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(to right, #1e293b 1px, transparent 1px); background-size: 40px 40px;">
     </div>
 
-    <!-- Theme Switcher -->
-    <div class="theme-switch" onclick="toggleTheme()" title="Toggle Day/Night Mode">
-        <div class="switch-handle">
-            <i data-lucide="sun" class="w-4 h-4 hidden dark-icon"></i>
-            <i data-lucide="moon" class="w-4 h-4 light-icon"></i>
-        </div>
-    </div>
-
-    <div class="max-w-5xl mx-auto space-y-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         
-        <!-- Header Section -->
-        <header class="glass-panel p-8 md:p-10 reveal">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-2">Abhay Bhattacharjee</h1>
-                    <p class="text-xl md:text-2xl text-sec font-light">Operations Leader & Data Analyst</p>
-                    <p class="text-sm mt-2 text-sec max-w-2xl">
-                        Dynamic Operations Leader with a focus on automation, data-driven decision-making, and AI integration. Expert in optimizing workflows using AppScripts, Power Automate, and Looker Studio.
-                    </p>
+        <!-- Navbar / Top Actions -->
+        <div class="flex justify-between items-center mb-12 no-print">
+            <div class="flex items-center gap-2 text-neon-cyan font-mono text-sm">
+                <i data-lucide="terminal" class="w-4 h-4"></i>
+                <span>user@abhay-resume:~$</span>
+                <span class="animate-blink block w-2 h-4 bg-neon-cyan ml-1"></span>
+            </div>
+            <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-md transition-all border border-slate-700 hover:border-neon-cyan group">
+                <i data-lucide="printer" class="w-4 h-4 group-hover:text-neon-cyan transition-colors"></i>
+                <span>Print PDF</span>
+            </button>
+        </div>
+
+        <!-- Header / Hero -->
+        <header class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 items-center">
+            <div class="lg:col-span-2">
+                <div class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-wider text-neon-green uppercase bg-slate-900 border border-slate-800 rounded-full">
+                    Open to Work
                 </div>
-                <div class="flex flex-col gap-3 min-w-[200px]">
-                    <a href="mailto:abhay.bhattacharjee@outlook.com" class="contact-link"><i data-lucide="mail" class="w-5 h-5"></i> Email Me</a>
-                    <a href="https://linkedin.com/in/abhaybhattacharjee/" target="_blank" class="contact-link"><i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn</a>
-                    <a href="https://abhayxops.github.io/abhayxops/" target="_blank" class="contact-link"><i data-lucide="globe" class="w-5 h-5"></i> Portfolio</a>
-                    <div class="contact-link"><i data-lucide="map-pin" class="w-5 h-5"></i> Indore, MP</div>
-                    <div class="contact-link"><i data-lucide="phone" class="w-5 h-5"></i> 934-000-7822</div>
+                <h1 class="text-5xl md:text-6xl font-bold text-white tracking-tight mb-2">
+                    Abhay <span class="text-slate-500">Bhattacharjee</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-neon-cyan font-mono mb-6">
+                    &lt;OperationsLeader /&gt; &amp; &lt;DataAnalyst /&gt;
+                </h2>
+                <p class="text-lg text-slate-400 max-w-2xl leading-relaxed mb-8 border-l-4 border-neon-purple pl-4">
+                    Dynamic Operations Leader combining technical process automation with data-driven decision making. Expert in optimizing workflows using <span class="text-white">AppScripts, Power Automate, & AI</span> to drive revenue growth and efficiency.
+                </p>
+                
+                <!-- Contact Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-mono">
+                    <a href="mailto:abhay.bhattacharjee@outlook.com" class="flex items-center gap-3 p-3 bg-slate-900/50 rounded hover:bg-slate-800 transition-colors border border-slate-800 hover:border-slate-600">
+                        <i data-lucide="mail" class="text-neon-cyan w-4 h-4"></i>
+                        abhay.bhattacharjee@outlook.com
+                    </a>
+                    <a href="tel:9340007822" class="flex items-center gap-3 p-3 bg-slate-900/50 rounded hover:bg-slate-800 transition-colors border border-slate-800 hover:border-slate-600">
+                        <i data-lucide="phone" class="text-neon-green w-4 h-4"></i>
+                        +91 934-000-7822
+                    </a>
+                    <a href="https://linkedin.com/in/abhaybhattacharjee" target="_blank" class="flex items-center gap-3 p-3 bg-slate-900/50 rounded hover:bg-slate-800 transition-colors border border-slate-800 hover:border-slate-600">
+                        <i data-lucide="linkedin" class="text-blue-500 w-4 h-4"></i>
+                        linkedin.com/abhay
+                    </a>
+                    <a href="https://abhayxops.github.io/abhayxops/" target="_blank" class="flex items-center gap-3 p-3 bg-slate-900/50 rounded hover:bg-slate-800 transition-colors border border-slate-800 hover:border-slate-600">
+                        <i data-lucide="globe" class="text-purple-500 w-4 h-4"></i>
+                        abhayxops.github.io
+                    </a>
+                    <div class="flex items-center gap-3 p-3 bg-slate-900/50 rounded border border-slate-800">
+                        <i data-lucide="map-pin" class="text-red-400 w-4 h-4"></i>
+                        Indore, MP, India
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack / Skills (Visualized as JSON/Code) -->
+            <div class="lg:col-span-1">
+                <div class="code-block p-6 shadow-2xl">
+                    <div class="flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-2 text-xs text-slate-500 font-mono">skills.json</span>
+                    </div>
+                    <pre class="font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+<span class="text-purple-400">const</span> <span class="text-blue-400">stack</span> = {
+  <span class="text-neon-cyan">"Data"</span>: [
+    <span class="text-green-400">"Power BI"</span>,
+    <span class="text-green-400">"Tableau"</span>,
+    <span class="text-green-400">"Looker Studio"</span>,
+    <span class="text-green-400">"Google Analytics"</span>
+  ],
+  <span class="text-neon-cyan">"Automation"</span>: [
+    <span class="text-green-400">"AppScripts"</span>,
+    <span class="text-green-400">"Power Automate"</span>,
+    <span class="text-green-400">"AI Integration"</span>
+  ],
+  <span class="text-neon-cyan">"Platforms"</span>: [
+    <span class="text-green-400">"Salesforce"</span>,
+    <span class="text-green-400">"G-Suite Admin"</span>,
+    <span class="text-green-400">"Sanas AI"</span>
+  ]
+};</pre>
                 </div>
             </div>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Main Content Grid -->
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <!-- Main Content Column (Left) -->
-            <div class="md:col-span-2 space-y-6">
+            <!-- Left Column: Experience (8 cols) -->
+            <div class="lg:col-span-8 space-y-12">
                 
-                <!-- Experience -->
-                <section class="glass-panel p-8 reveal delay-1">
-                    <h2>Professional Experience</h2>
-                    
-                    <div class="mt-6">
+                <!-- Experience Section -->
+                <section>
+                    <div class="flex items-center gap-3 mb-8">
+                        <i data-lucide="briefcase" class="text-neon-cyan w-6 h-6"></i>
+                        <h3 class="text-2xl font-bold text-white">Professional Experience</h3>
+                        <div class="h-px bg-slate-800 flex-grow ml-4"></div>
+                    </div>
+
+                    <div class="relative pl-8 timeline-line space-y-12">
+                        
                         <!-- Job 1 -->
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-2">
-                                <h3 class="text-lg font-bold">Operations Manager</h3>
-                                <span class="text-sm text-sec font-mono">2023 – Present</span>
+                        <div class="relative group">
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-slate-900 border-2 border-blue-500 group-hover:border-neon-cyan transition-colors z-10"></div>
+                            <div class="glass-panel p-6 rounded-lg hover:bg-slate-800/50 transition-all border border-slate-800 hover:border-blue-500/30">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Operations Manager</h4>
+                                        <p class="text-blue-400 font-medium">TaskUs</p>
+                                    </div>
+                                    <div class="mt-2 sm:mt-0 px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-mono border border-blue-500/20">
+                                        2023 – Present
+                                    </div>
+                                </div>
+                                <ul class="space-y-3 text-slate-400 text-sm list-disc list-outside ml-4 marker:text-blue-500">
+                                    <li>Spearheaded a department of <strong class="text-slate-200">250+ teammates & 15 leads</strong>, optimizing workforce planning and forecasting.</li>
+                                    <li>Designed <strong class="text-slate-200">automation scripts (AppScripts, Power Automate)</strong> mirroring enterprise SSO functionality to reduce configuration errors.</li>
+                                    <li>Built real-time analytics dashboards in <strong class="text-slate-200">Looker Studio & Power BI</strong> for operational health monitoring.</li>
+                                    <li>Launched Phone LOB, optimizing call routing to achieve <strong class="text-neon-green">4% reduction</strong> in friction-related abandonment.</li>
+                                    <li>Improved Employee Satisfaction (ESAT) by <strong class="text-neon-green">~47.5%</strong> and reduced attrition by 4%/month.</li>
+                                    <li>Managed full lifecycle of user accounts across Salesforce & G-Suite with strict security compliance.</li>
+                                </ul>
                             </div>
-                            <div class="text-sec italic mb-4">TaskUs</div>
-                            <ul class="list-disc list-outside ml-4 space-y-2 text-sec text-sm leading-relaxed">
-                                <li>Spearheaded a team of 250+ teammates and 15 team leaders.</li>
-                                <li>Improved ESAT by ~47.5% and reduced attrition by 4%/month consecutively.</li>
-                                <li>Launched the Phone Line of Business, reducing technical friction by 4%.</li>
-                                <li>Designed automation scripts (AppScripts, Power Automate) streamlining user productivity.</li>
-                                <li>Built advanced analytics dashboards in Looker Studio and Power BI.</li>
-                            </ul>
                         </div>
 
                         <!-- Job 2 -->
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-2">
-                                <h3 class="text-lg font-bold">Operations Team Leader</h3>
-                                <span class="text-sm text-sec font-mono">2021 – 2023</span>
+                        <div class="relative group">
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-slate-900 border-2 border-purple-500 group-hover:border-neon-cyan transition-colors z-10"></div>
+                            <div class="glass-panel p-6 rounded-lg hover:bg-slate-800/50 transition-all border border-slate-800 hover:border-purple-500/30">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
+                                    <div>
+                                        <h4 class="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">Operations Team Leader</h4>
+                                        <p class="text-purple-400 font-medium">TaskUs</p>
+                                    </div>
+                                    <div class="mt-2 sm:mt-0 px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs font-mono border border-purple-500/20">
+                                        2021 – 2023
+                                    </div>
+                                </div>
+                                <ul class="space-y-3 text-slate-400 text-sm list-disc list-outside ml-4 marker:text-purple-500">
+                                    <li>Spearheaded process automation by developing Connectors & Add-ons, significantly reducing manual effort.</li>
+                                    <li>Achieved <strong class="text-neon-green">~4.8% increase</strong> over FCR goals through improved documentation and support.</li>
+                                    <li>Enhanced service quality through proactive technical troubleshooting of client delivery timelines.</li>
+                                </ul>
                             </div>
-                            <div class="text-sec italic mb-4">TaskUs</div>
-                            <ul class="list-disc list-outside ml-4 space-y-2 text-sec text-sm leading-relaxed">
-                                <li>Automated repetitive tasks using connectors and AppScripts.</li>
-                                <li>Achieved ~4.8% increase over FCR goals via improved technical documentation.</li>
-                                <li>Enhanced service quality through proactive issue resolution.</li>
-                            </ul>
                         </div>
 
                         <!-- Job 3 -->
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-2">
-                                <h3 class="text-lg font-bold">Teammate</h3>
-                                <span class="text-sm text-sec font-mono">2020 – 2021</span>
+                        <div class="relative group">
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-slate-900 border-2 border-slate-600 group-hover:border-neon-cyan transition-colors z-10"></div>
+                            <div class="p-6 rounded-lg border border-dashed border-slate-800 opacity-80 hover:opacity-100 transition-all">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div>
+                                        <h4 class="text-lg font-bold text-slate-200">Teammate</h4>
+                                        <p class="text-slate-500">TaskUs</p>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-500">2020 – 2021</div>
+                                </div>
                             </div>
-                            <div class="text-sec italic mb-4">TaskUs</div>
                         </div>
-
-                        <!-- Job 4 -->
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-2">
-                                <h3 class="text-lg font-bold">Apprenticeship – Machinist</h3>
-                                <span class="text-sm text-sec font-mono">2018 – 2020</span>
+                         <!-- Job 4 -->
+                         <div class="relative group">
+                            <div class="absolute -left-[39px] top-1 w-5 h-5 rounded-full bg-slate-900 border-2 border-slate-600 group-hover:border-neon-cyan transition-colors z-10"></div>
+                            <div class="p-6 rounded-lg border border-dashed border-slate-800 opacity-80 hover:opacity-100 transition-all">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div>
+                                        <h4 class="text-lg font-bold text-slate-200">Apprentice Machinist</h4>
+                                        <p class="text-slate-500">Gun Carriage Factory, Jabalpur</p>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-500">2018 – 2020</div>
+                                </div>
                             </div>
-                            <div class="text-sec italic mb-4">Gun Carriage Factory, Jabalpur</div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Key Projects -->
-                <section class="glass-panel p-8 reveal delay-2">
-                    <h2>Key Projects & Initiatives</h2>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="p-4 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-bg)]">
-                            <h4 class="font-bold mb-1">AI & Automation Integration</h4>
-                            <p class="text-sm text-sec">Implemented Sapling AI, Gemini, and Formalizer for improved conversational flow. Created SOPs for 'Observe.AI' integration across vendor partners.</p>
+                <!-- Key Projects Grid -->
+                <section>
+                    <div class="flex items-center gap-3 mb-8">
+                        <i data-lucide="cpu" class="text-neon-purple w-6 h-6"></i>
+                        <h3 class="text-2xl font-bold text-white">Technical Projects</h3>
+                        <div class="h-px bg-slate-800 flex-grow ml-4"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Project 1 -->
+                        <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 hover:border-neon-cyan transition-all group">
+                            <div class="flex items-center gap-2 mb-3 text-neon-cyan">
+                                <i data-lucide="cloud" class="w-4 h-4"></i>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider">Integration</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">Amazon Cloud Connect</h4>
+                            <p class="text-sm text-slate-400">Managed integration and testing to ensure seamless cloud connectivity.</p>
                         </div>
-                        <div class="p-4 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-bg)]">
-                            <h4 class="font-bold mb-1">Amazon Cloud Connect</h4>
-                            <p class="text-sm text-sec">Managed integration, testing, and deployment of cloud telephony systems.</p>
+
+                        <!-- Project 2 -->
+                        <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 hover:border-neon-purple transition-all group">
+                            <div class="flex items-center gap-2 mb-3 text-neon-purple">
+                                <i data-lucide="bot" class="w-4 h-4"></i>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider">AI Implementation</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">AI & SOP Automation</h4>
+                            <p class="text-sm text-slate-400">Deployed Sapling AI, Gemini, and Formalizer tools. Created SOPs for 'Observe.AI' integration.</p>
                         </div>
-                        <div class="p-4 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-bg)]">
-                            <h4 class="font-bold mb-1">Tech Stack Optimization</h4>
-                            <p class="text-sm text-sec">Deployed Sanas Noise Cancellation and Heartbeat Network Monitoring tools to categorize non-productive proxy websites.</p>
+
+                         <!-- Project 3 -->
+                         <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 hover:border-neon-green transition-all group">
+                            <div class="flex items-center gap-2 mb-3 text-neon-green">
+                                <i data-lucide="audio-waveform" class="w-4 h-4"></i>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider">Audio Tech</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-neon-green transition-colors">Sanas Noise Cancellation</h4>
+                            <p class="text-sm text-slate-400">Configuration and deployment of accent neutralization and noise cancellation tech.</p>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="p-5 bg-slate-900 rounded-lg border border-slate-800 hover:border-blue-400 transition-all group">
+                            <div class="flex items-center gap-2 mb-3 text-blue-400">
+                                <i data-lucide="activity" class="w-4 h-4"></i>
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider">Monitoring</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Heartbeat Network Tool</h4>
+                            <p class="text-sm text-slate-400">Implemented monitoring tools to identify non-productive proxy usage.</p>
                         </div>
                     </div>
                 </section>
-
             </div>
 
-            <!-- Sidebar Column (Right) -->
-            <div class="space-y-6">
+            <!-- Right Column: Skills, Education, Certs (4 cols) -->
+            <div class="lg:col-span-4 space-y-12">
                 
-                <!-- Skills -->
-                <section class="glass-panel p-8 reveal delay-3">
-                    <h2>Technical Skills</h2>
+                <!-- Detailed Skills -->
+                <section>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-800 pb-2">Technical Proficiency</h3>
                     
-                    <div class="mb-4">
-                        <h4 class="text-xs font-bold uppercase text-sec mb-2">Data & Viz</h4>
-                        <div class="flex flex-wrap">
-                            <span class="skill-tag">Power BI</span>
-                            <span class="skill-tag">Tableau</span>
-                            <span class="skill-tag">Looker Studio</span>
-                            <span class="skill-tag">Google Data Analytics</span>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-slate-400 mb-2">
+                                <span>DATA VISUALIZATION</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 w-[90%] rounded-full"></div>
+                            </div>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Power BI</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Tableau</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Looker Studio</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <h4 class="text-xs font-bold uppercase text-sec mb-2">Automation</h4>
-                        <div class="flex flex-wrap">
-                            <span class="skill-tag">AppScripts</span>
-                            <span class="skill-tag">Power Automate</span>
-                            <span class="skill-tag">AI Integration</span>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-slate-400 mb-2">
+                                <span>AUTOMATION & SCRIPTING</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 w-[85%] rounded-full"></div>
+                            </div>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">AppScripts</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Power Automate</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <h4 class="text-xs font-bold uppercase text-sec mb-2">Platforms</h4>
-                        <div class="flex flex-wrap">
-                            <span class="skill-tag">Salesforce</span>
-                            <span class="skill-tag">G-Suite</span>
-                            <span class="skill-tag">Sanas</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="text-xs font-bold uppercase text-sec mb-2">Methods</h4>
-                        <div class="flex flex-wrap">
-                            <span class="skill-tag">Incident Management</span>
-                            <span class="skill-tag">Risk Management</span>
-                            <span class="skill-tag">Workforce Optimization</span>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-slate-400 mb-2">
+                                <span>OPS & MANAGEMENT</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-green-500 to-emerald-400 w-[95%] rounded-full"></div>
+                            </div>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Workforce Optimization</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Risk Mgmt</span>
+                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Incident Mgmt</span>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Education -->
-                <section class="glass-panel p-8 reveal delay-3">
-                    <h2>Education</h2>
+                <section>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-800 pb-2">Education & Certs</h3>
                     
-                    <div class="mb-6">
-                        <h3 class="font-bold">Google Data Analytics</h3>
-                        <p class="text-sm text-sec">Professional Certification</p>
-                        <p class="text-xs text-sec mt-1">2021</p>
-                    </div>
+                    <div class="space-y-6">
+                        <div class="flex gap-3">
+                            <div class="mt-1">
+                                <i data-lucide="award" class="w-5 h-5 text-yellow-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Google Data Analytics</h4>
+                                <p class="text-xs text-slate-400">Professional Certification • 2021</p>
+                            </div>
+                        </div>
 
-                    <div class="mb-6">
-                        <h3 class="font-bold">Bachelor of Commerce</h3>
-                        <p class="text-sm text-sec">Applied Economics & Finance</p>
-                        <p class="text-xs text-sec italic">St. Aloysius Autonomous College</p>
-                        <p class="text-xs text-sec mt-1">2014 – 2017</p>
-                    </div>
-
-                    <div>
-                        <h3 class="font-bold">Higher Secondary</h3>
-                        <p class="text-sm text-sec">St. Gabriels’ Senior Secondary School</p>
-                        <p class="text-xs text-sec mt-1">2014</p>
+                        <div class="flex gap-3">
+                            <div class="mt-1">
+                                <i data-lucide="graduation-cap" class="w-5 h-5 text-slate-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Bachelor of Commerce</h4>
+                                <p class="text-xs text-slate-400">Applied Economics & Finance</p>
+                                <p class="text-xs text-slate-500">St. Aloysius College • 2014–2017</p>
+                            </div>
+                        </div>
+                        
+                         <div class="flex gap-3">
+                            <div class="mt-1">
+                                <i data-lucide="book-open" class="w-5 h-5 text-slate-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Higher Secondary</h4>
+                                <p class="text-xs text-slate-500">St. Gabriels’ Sr. Sec. School • 2014</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-            </div>
-        </div>
-        
-        <footer class="text-center text-sec text-xs py-8 reveal delay-3">
-            <p>&copy; Abhay Bhattacharjee | 2026</p>
-        </footer>
+                <!-- Soft Skills / Methodologies Tags -->
+                <section>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-800 pb-2">Methodologies</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 border border-slate-700 rounded-md text-xs font-mono hover:bg-slate-800 hover:text-white transition-colors cursor-default">Strategic Operations</span>
+                        <span class="px-3 py-1.5 border border-slate-700 rounded-md text-xs font-mono hover:bg-slate-800 hover:text-white transition-colors cursor-default">Process Optimization</span>
+                        <span class="px-3 py-1.5 border border-slate-700 rounded-md text-xs font-mono hover:bg-slate-800 hover:text-white transition-colors cursor-default">Fraud Escalations</span>
+                        <span class="px-3 py-1.5 border border-slate-700 rounded-md text-xs font-mono hover:bg-slate-800 hover:text-white transition-colors cursor-default">Team Leadership</span>
+                    </div>
+                </section>
+                
+                 <!-- Footer/Credits -->
+                <div class="mt-12 pt-6 border-t border-slate-900 text-center lg:text-left">
+                    <p class="text-xs text-slate-600 font-mono">
+                        Generated by GeminiCanvas<br>
+                        Last updated: 2026
+                    </p>
+                </div>
 
+            </div>
+        </main>
     </div>
 
+    <!-- Initialize Icons -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
-
-        // Theme Toggle Logic
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            html.setAttribute('data-theme', newTheme);
-            updateIcon(newTheme);
-            
-            // Optional: Save preference
-            // localStorage.setItem('theme', newTheme);
-        }
-
-        function updateIcon(theme) {
-            const sunIcon = document.querySelector('.dark-icon'); // Shows when it is currently dark (to switch to light)? No, usually icon shows what will happen or current state.
-            // Let's make logic simple: 
-            // If theme is dark, we want to show the Sun (to switch to light).
-            // If theme is light, we want to show the Moon (to switch to dark).
-            
-            const handle = document.querySelector('.switch-handle');
-            handle.innerHTML = '';
-            
-            if (theme === 'dark') {
-                // Currently Dark, show Sun
-                handle.innerHTML = '<i data-lucide="sun" class="w-4 h-4"></i>';
-            } else {
-                // Currently Light, show Moon
-                handle.innerHTML = '<i data-lucide="moon" class="w-4 h-4"></i>';
-            }
-            lucide.createIcons();
-        }
-
-        // Initialize Icon state
-        updateIcon(document.documentElement.getAttribute('data-theme'));
     </script>
 </body>
 </html>
