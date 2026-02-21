@@ -3,252 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhay Bhattacharjee</title>
+    <title>Abhay Bhattacharjee | Portfolio</title>
     <style>
-        /* Apple-style CSS Variables */
+        /* Apple-Style CSS Variables and Resets */
         :root {
-            --apple-bg: #ffffff;
-            --apple-gray-bg: #f5f5f7;
-            --apple-dark-text: #1d1d1f;
-            --apple-light-text: #86868b;
-            --apple-blue: #0066cc;
-            --apple-border: #e5e5ea;
+            --apple-dark: #1d1d1f;
+            --apple-gray: #f5f5f7;
+            --apple-blue: #0071e3;
+            --text-muted: #86868b;
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            /* Uses Apple's system fonts */
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--apple-bg);
-            color: var(--apple-dark-text);
+            font-family: var(--font-stack);
+            color: var(--apple-dark);
+            background-color: #ffffff;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 20px auto;
         }
 
         /* Hero Section */
         .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 100px 20px 80px;
-            background-color: var(--apple-gray-bg);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            color: #ffffff;
+            padding: 20px;
         }
 
-        .profile-img {
-            width: 160px;
-            height: 160px;
+        .hero p {
+            color: #f5f5f7;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid #ffffff;
+        }
+
+        .profile-section p.lead {
+            font-size: 1.5rem;
+            color: var(--apple-dark);
+            font-weight: 500;
+        }
+
+        /* Experience & Skills Section */
+        .details-section {
+            background-color: var(--apple-gray);
+            padding: 100px 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 50px auto 0 auto;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
-        
-        .profile-img:hover {
-            transform: scale(1.03);
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
-        h1 {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -0.003em;
-            margin: 0 0 12px 0;
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--apple-dark);
         }
 
-        .subtitle {
-            font-size: 24px;
-            font-weight: 400;
-            color: var(--apple-light-text);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.3;
+        .card p, .card ul {
+            font-size: 1rem;
+            color: var(--text-muted);
+            text-align: left;
         }
 
-        .contact-info {
-            margin-top: 28px;
-            font-size: 15px;
-            color: var(--apple-light-text);
+        .card ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        .contact-info a {
-            color: var(--apple-blue);
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 400;
+        .card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main Content Container */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        section {
-            margin-bottom: 64px;
-        }
-
-        h2 {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.003em;
-            margin-bottom: 28px;
-            border-bottom: 1px solid var(--apple-border);
-            padding-bottom: 12px;
-        }
-
-        p {
-            font-size: 17px;
-            line-height: 1.47059;
-            font-weight: 400;
-            letter-spacing: -0.022em;
-            margin-bottom: 20px;
-            color: #333336;
-        }
-
-        /* Skills Tags */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill-tag {
-            background-color: var(--apple-gray-bg);
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--apple-dark-text);
-            border: 1px solid var(--apple-border);
-        }
-
-        /* Experience Layout */
-        .experience-item {
-            margin-bottom: 40px;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 12px;
-        }
-
-        .job-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .job-company {
-            font-weight: 400;
-            color: var(--apple-light-text);
-        }
-
-        .job-date {
-            color: var(--apple-light-text);
-            font-size: 15px;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        li {
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            color: #333336;
+        .card ul li:last-child {
+            border-bottom: none;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 40px 20px;
-            background-color: var(--apple-gray-bg);
-            color: var(--apple-light-text);
-            font-size: 13px;
+            background-color: #ffffff;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            .hero p { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEDprAbVFSAng/profile-displayphoto-scale_400_400/B4DZu0Q4zHIAAg-/0/1768255885589?e=1773273600&v=beta&t=OI_VLJYXf86owH5EIKCT3faDG1zBr5YKGCMqMXC2b00" alt="Abhay Bhattacharjee" class="profile-img">
-        <h1>Abhay Bhattacharjee</h1>
-        <p class="subtitle">Dynamic Operations Leader & Data Analyst</p>
-        
-        <div class="contact-info">
-            <span>Indore, MP</span> | 
-            <a href="mailto:abhay.bhattacharjee@outlook.com">abhay.bhattacharjee@outlook.com</a> | 
-            <a href="https://www.linkedin.com/in/abhaybhattacharjee/" target="_blank">LinkedIn</a>
-        </div>
+        <h1>Abhay Bhattacharjee.</h1>
+        <p>Operations Manager. Data Analyst. Technology Leader.</p>
     </header>
 
-    <main class="container">
+    <section class="profile-section">
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEDprAbVFSAng/profile-displayphoto-scale_400_400/B4DZu0Q4zHIAAg-/0/1768255885589?e=1773273600&v=beta&t=OI_VLJYXf86owH5EIKCT3faDG1zBr5YKGCMqMXC2b00" alt="Abhay Bhattacharjee" class="profile-image">
+        <h2>Pro. Beyond Pro.</h2>
+        <p class="lead">A dynamic operations leader with a background in data analysis, technical process automation, and AI integration.</p>
+        <p>Currently based in Indore, India, building scalable systems and leading high-performing teams at TaskUs.</p>
+    </section>
+
+    <section class="details-section">
+        <h2>The power behind the operations.</h2>
+        <p>Leveraging advanced analytics and automation to drive efficiency at scale.</p>
         
-        <section>
-            <h2>About Me</h2>
-            <p>Dynamic Operations Leader and Data Analyst with a strong focus on technical process automation, data-driven decision-making, and AI integration. Expert in optimizing operational workflows using AppScripts, Power Automate, and Looker Studio to drive efficiency and revenue growth. Proven track record in incident management and leveraging advanced data visualization tools like Power BI and Tableau to provide actionable business insights.</p>
-        </section>
-
-        <section>
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <span class="skill-tag">Power BI</span>
-                <span class="skill-tag">Tableau</span>
-                <span class="skill-tag">Looker Studio</span>
-                <span class="skill-tag">Google Data Analytics</span>
-                <span class="skill-tag">AppScripts</span>
-                <span class="skill-tag">Power Automate</span>
-                <span class="skill-tag">AI Integration</span>
-                <span class="skill-tag">Salesforce</span>
-                <span class="skill-tag">G-Suite</span>
-            </div>
-        </section>
-
-        <section>
-            <h2>Professional Experience</h2>
+        <div class="grid-container">
             
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Operations Manager <span class="job-company">@ TaskUs</span></h3>
-                    <span class="job-date">2023 – Present</span>
-                </div>
+            <div class="card">
+                <h3>Technical Arsenal</h3>
                 <ul>
-                    <li>Spearheaded a team of 250+ teammates and 15 team leaders, fostering collaboration and leadership.</li>
-                    <li>Designed and implemented automation scripts using AppScripts and Power Automate to streamline user productivity and reduce manual configuration errors.</li>
-                    <li>Built advanced analytics dashboards in Looker Studio and Power BI, integrating disparate data sources to monitor real-time system performance.</li>
-                    <li>Successfully launched the Phone Line of Business by configuring cloud-based telephony profiles and optimizing call routing logic, leading to a 4% monthly reduction in technical friction-related contact abandonment.</li>
+                    <li>PowerBI, Tableau & Looker Studio</li>
+                    <li>Salesforce & G-Suite Management</li>
+                    <li>AppScripts & Power Automate</li>
+                    <li>Cloud Telephony (Amazon Connect)</li>
+                    <li>AI Integration & Automation</li>
                 </ul>
             </div>
 
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Operations Team Leader <span class="job-company">@ TaskUs</span></h3>
-                    <span class="job-date">2021 – 2023</span>
-                </div>
+            <div class="card">
+                <h3>Experience</h3>
                 <ul>
-                    <li>Spearheaded the automation of repetitive tasks by developing and deploying Connectors, Add-ons, and AppScripts, significantly reducing manual effort.</li>
-                    <li>Enhanced service quality through proactive technical issue resolution and advanced troubleshooting of client delivery timelines.</li>
+                    <li><strong>Operations Manager</strong><br>TaskUs</li>
+                    <li><strong>Technology Solution Lead</strong><br>Cross-functional IT & Network collaboration</li>
+                    <li><strong>End-to-End Lifecycle Management</strong><br>Managing 250+ users across platforms</li>
                 </ul>
             </div>
-        </section>
 
-        <section>
-            <h2>Key Projects</h2>
-            <ul>
-                <li><strong>Amazon Cloud Connect:</strong> Integration and Testing.</li>
-                <li><strong>AI Tool Integration:</strong> Deployed tools for improved conversational flow including Sapling AI, Gemini, and Formalizer for SOP Creation.</li>
-                <li><strong>Audio Optimization:</strong> Deployment and configuration of Sanas Noise Cancellation and Accent Neutralizer.</li>
-            </ul>
-        </section>
+            <div class="card">
+                <h3>Education & Credentials</h3>
+                <ul>
+                    <li><strong>Google Data Analytics</strong><br>Professional Certification (2021)</li>
+                    <li><strong>Bachelor of Commerce</strong><br>Applied Economics & Finance<br>St. Aloysius Autonomous College, Jabalpur</li>
+                </ul>
+            </div>
 
-    </main>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2026 Abhay Bhattacharjee. All rights reserved.</p>
