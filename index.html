@@ -3,352 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhay Bhattacharjee - Resume</title>
+    <title>Abhay Bhattacharjee - Deep Space Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-void: #0f1115; /* Dark grey-charcoal */
-            --glass-bg: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --accent: #cbd5e1; 
+            --space-black: #000000;
+            --starlight: #ffffff;
+            --dust-grey: #a3a3a3;
+            --dark-grey: #171717;
         }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-void);
-            color: var(--text-main);
+        body, html {
             margin: 0;
+            padding: 0;
+            background-color: var(--space-black);
+            color: var(--starlight);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
-        /* Minimalist Galaxy Background */
-        #starsCanvas {
+        h1, h2, h3, .syncopate {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* 3D Canvas Background */
+        #canvas-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none; /* Let clicks pass through to content */
         }
 
-        /* Astronaut Animation */
-        .astronaut-container {
-            position: fixed;
-            bottom: 10%;
-            right: 5%;
-            width: 80px;
-            height: 80px;
-            z-index: 5;
-            pointer-events: none;
-            opacity: 0.6;
-            animation: floatAstronaut 15s infinite ease-in-out;
-        }
-
-        @keyframes floatAstronaut {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-20px, -30px) rotate(5deg); }
-            50% { transform: translate(10px, -50px) rotate(-10deg); }
-            75% { transform: translate(25px, -20px) rotate(3deg); }
-        }
-
-        /* Minimalist Glassmorphism */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--glass-border);
-            border-radius: 0.25rem;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 0.25rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .glass-pill {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-            transition: all 0.3s ease;
-            font-size: 0.65rem;
-        }
-
-        .glass-pill:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: #000;
-            border-color: white;
-        }
-
-        /* Typography & Utilities */
-        .section-title {
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .timeline-dot {
-            height: 6px;
-            width: 6px;
-            background: #475569;
-            border-radius: 50%;
-            position: absolute;
-            left: -3px;
-            top: 9px;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: -1px;
-            top: 20px;
-            bottom: -40px;
-            width: 1px;
-            background: var(--glass-border);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: var(--bg-void); }
-        ::-webkit-scrollbar-thumb { background: #2d3139; }
-
-        ul.styled-list li {
+        /* Main Content Layer */
+        #content-layer {
             position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
+            z-index: 10;
+            width: 100%;
         }
-        ul.styled-list li::before {
-            content: '–';
+
+        /* Start Screen Overlay */
+        #start-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--space-black);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .init-btn {
+            background: transparent;
+            color: var(--starlight);
+            border: none;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.5rem;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .init-btn:hover {
+            color: var(--dust-grey);
+            letter-spacing: 0.7rem;
+        }
+
+        /* Text Readability (Shadows instead of boxes) */
+        .text-float {
+            text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.9), 0px 0px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .section-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 5% 10%;
+        }
+
+        /* Timeline Typography */
+        .timeline-year {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--dust-grey);
+            font-size: 0.8rem;
+            letter-spacing: 0.2rem;
+        }
+
+        /* Skills Typography Grid */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 4rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            font-size: 1.5rem;
+            font-weight: 200;
+            letter-spacing: 0.1rem;
+            transition: transform 0.3s;
+            cursor: default;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.1);
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Scroll indicator */
+        .scroll-down {
             position: absolute;
-            left: 0;
-            color: #475569;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.5;
         }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        ::-webkit-scrollbar { width: 0px; } /* Hide scrollbar for immersion */
     </style>
 </head>
-<body class="antialiased min-h-screen py-16 px-6 sm:px-12 md:px-24">
+<body>
 
-    <!-- Subtle Galactic Element -->
-    <canvas id="starsCanvas"></canvas>
-
-    <!-- Floating Astronaut SVG -->
-    <div class="astronaut-container">
-        <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M365.5 198.5C365.5 259.523 316.023 309 255 309C193.977 309 144.5 259.523 144.5 198.5C144.5 137.477 193.977 88 255 88C316.023 88 365.5 137.477 365.5 198.5Z" stroke="#94a3b8" stroke-width="8"/>
-            <path d="M190 180H320V230C320 265.899 290.899 295 255 295C219.101 295 190 265.899 190 230V180Z" fill="rgba(255,255,255,0.05)" stroke="#94a3b8" stroke-width="4"/>
-            <path d="M210 195C210 192.239 212.239 190 215 190H235C237.761 190 240 192.239 240 195V200C240 202.761 237.761 205 235 205H215C212.239 205 210 202.761 210 200V195Z" fill="#94a3b8"/>
-            <path d="M144.5 198.5V360M365.5 198.5V360M255 309V400" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/>
-            <circle cx="255" cy="420" r="15" stroke="#94a3b8" stroke-width="4"/>
-        </svg>
+    <!-- Fullscreen Initiation Screen -->
+    <div id="start-screen">
+        <button class="init-btn" onclick="initExperience()">
+            Initialize Mission<br>
+            <span style="font-size: 0.5rem; letter-spacing: 0.2rem; opacity: 0.5; font-family: 'Inter', sans-serif;">[ Click to enter full screen ]</span>
+        </button>
     </div>
 
-    <!-- Main Container -->
-    <main class="max-w-5xl mx-auto space-y-20 relative z-10">
+    <!-- 3D Background -->
+    <div id="canvas-container"></div>
 
-        <!-- Header Section -->
-        <header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-            <div>
-                <h1 class="text-5xl md:text-6xl font-extralight tracking-tighter mb-3">
-                    Abhay Bhattacharjee
-                </h1>
-                <p class="text-sm text-slate-500 uppercase tracking-[0.3em] font-medium">Operations & Strategy Manager</p>
-            </div>
-            
-            <div class="flex flex-col items-start md:items-end gap-1.5 text-[10px] uppercase tracking-widest text-slate-500 font-bold">
-                <a href="mailto:abhay.bhattacharjee@outlook.com" class="hover:text-white transition-colors duration-300">abhay.bhattacharjee@outlook.com</a>
-                <span>(+91) 934-000-7822</span>
-                <span>Indore, MP</span>
-                <a href="https://www.linkedin.com/in/abhaybhattacharjee/" target="_blank" class="hover:text-white transition-colors duration-300">LinkedIn Profile</a>
-            </div>
-        </header>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            
-            <!-- Sidebar (4 cols) -->
-            <div class="lg:col-span-4 space-y-16">
-                
-                <!-- Summary -->
-                <section>
-                    <h2 class="section-title">Overview</h2>
-                    <p class="text-slate-400 text-sm leading-relaxed font-light">
-                        Strategic operations leader specialized in optimizing performance and scaling multi-channel BPO teams. Expertise in leveraging AI and data-driven insights to drive revenue and operational excellence.
-                    </p>
-                </section>
-
-                <!-- Skills -->
-                <section>
-                    <h2 class="section-title">Expertise</h2>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">PowerBi</span>
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">Tableau</span>
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">Looker</span>
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">Salesforce</span>
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">AppScripts</span>
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">AI Integration</span>
-                        <span class="glass-pill px-2 py-1 rounded tracking-tighter font-medium">Risk Mgmt</span>
-                    </div>
-                </section>
-
-                <!-- Education -->
-                <section>
-                    <h2 class="section-title">Education</h2>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-xs font-bold uppercase tracking-wider">B.Com Applied Economics</h3>
-                            <p class="text-[10px] text-slate-500 mt-1 uppercase tracking-tight">St. Aloysius Autonomous College • 2017</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xs font-bold uppercase tracking-wider">Senior Secondary</h3>
-                            <p class="text-[10px] text-slate-500 mt-1 uppercase tracking-tight">St. Gabriels’ School • 2014</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Certs -->
-                <section>
-                    <h2 class="section-title">Certifications</h2>
-                    <div class="space-y-4">
-                        <a href="https://coursera.org/share/152f131356a855b5e04d17dc1168fa14" target="_blank" class="block text-[11px] text-slate-500 hover:text-white transition border-l border-white/5 pl-3">Google AI Essentials (2025)</a>
-                        <a href="https://coursera.org/share/b54bebb25f110aa1d33559bedcca97b2" target="_blank" class="block text-[11px] text-slate-500 hover:text-white transition border-l border-white/5 pl-3">Google Data Analytics (2021)</a>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Experience (8 cols) -->
-            <div class="lg:col-span-8 space-y-16">
-                <section>
-                    <h2 class="section-title">Professional Path</h2>
-                    
-                    <div class="space-y-16">
-                        <!-- Job 1 -->
-                        <div class="relative pl-10">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-medium tracking-tight">Operations Manager</h3>
-                                    <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-0.5">TaskUs</p>
-                                </div>
-                                <span class="text-[9px] font-black tracking-[0.2em] uppercase text-slate-600 mt-1">2023 — Present</span>
-                            </div>
-                            <ul class="styled-list">
-                                <li>Leading 250+ member organization across Phone and Chat LOBs.</li>
-                                <li>Spearheading multi-channel BPO operations with focus on AI/Automation for margin improvement.</li>
-                                <li>Achieved attrition reduction of 4% per month for consecutive quarters.</li>
-                                <li>Realized ESAT improvement of approximately 47.5%.</li>
-                            </ul>
-                        </div>
-
-                        <!-- Job 2 -->
-                        <div class="relative pl-10">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-4">
-                                <div>
-                                    <h3 class="text-lg font-medium tracking-tight">Operations Team Leader</h3>
-                                    <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-0.5">TaskUs</p>
-                                </div>
-                                <span class="text-[9px] font-black tracking-[0.2em] uppercase text-slate-600 mt-1">2021 — 2023</span>
-                            </div>
-                            <ul class="styled-list">
-                                <li>Supervised 20+ teammates, maintaining KPI excellence and company standards.</li>
-                                <li>Automated repetitive workflows using Google AppScripts and custom connectors.</li>
-                                <li>Awarded "Best Team Leader of the Year" (2020).</li>
-                            </ul>
-                        </div>
-
-                        <!-- Job 3 & 4 (Condensed) -->
-                        <div class="relative pl-10">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-line"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-1">
-                                <h3 class="text-sm font-bold tracking-tight uppercase">Teammate</h3>
-                                <span class="text-[9px] font-black tracking-[0.1em] uppercase text-slate-700">2020 — 2021</span>
-                            </div>
-                            <p class="text-[10px] text-slate-600 uppercase font-bold">TaskUs</p>
-                        </div>
-
-                        <div class="relative pl-10">
-                            <div class="timeline-dot"></div>
-                            <div class="flex flex-col sm:flex-row justify-between mb-1">
-                                <h3 class="text-sm font-bold tracking-tight uppercase">Apprenticeship - Machinist</h3>
-                                <span class="text-[9px] font-black tracking-[0.1em] uppercase text-slate-700">2018 — 2020</span>
-                            </div>
-                            <p class="text-[10px] text-slate-600 uppercase font-bold">Gun Carriage Factory</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </main>
-
-    <!-- Starfield Animation Logic -->
-    <script>
-        const canvas = document.getElementById('starsCanvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, stars = [];
-
-        function init() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            stars = [];
-            const count = Math.floor((width * height) / 6000); 
-            
-            for (let i = 0; i < count; i++) {
-                stars.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    radius: Math.random() * 1.1,
-                    opacity: Math.random() * 0.5 + 0.2,
-                    speed: Math.random() * 0.05
-                });
-            }
-        }
-
-        function draw() {
-            ctx.fillStyle = '#0f1115';
-            ctx.fillRect(0, 0, width, height);
-            
-            for (let s of stars) {
-                ctx.beginPath();
-                ctx.fillStyle = `rgba(148, 163, 184, ${s.opacity})`;
-                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-                ctx.fill();
-                
-                s.y -= s.speed;
-                if (s.y < 0) s.y = height;
-                
-                s.opacity += (Math.random() - 0.5) * 0.01;
-                if(s.opacity < 0.2) s.opacity = 0.2;
-                if(s.opacity > 0.6) s.opacity = 0.6;
-            }
-            requestAnimationFrame(draw);
-        }
-
-        window.addEventListener('resize', () => {
-            init();
-        });
+    <!-- Floating Content -->
+    <div id="content-layer" style="display: none;">
         
-        window.onload = () => {
-            init();
-            draw();
-        };
+        <!-- Hero Section -->
+        <section class="section-container relative items-center text-center">
+            <p class="timeline-year mb-4 text-float opacity-70">Commander // Indore Sector</p>
+            <h1 class="text-5xl md:text-8xl font-bold tracking-widest text-float leading-tight mb-6">
+                ABHAY<br>BHATTACHARJEE
+            </h1>
+            <h2 class="text-xl md:text-2xl font-light tracking-widest text-dust-grey text-float max-w-3xl leading-relaxed">
+                Operations Manager & AI Integration Specialist
+            </h2>
+            
+            <div class="mt-12 flex gap-8 text-sm syncopate tracking-widest text-dust-grey text-float">
+                <a href="mailto:abhay.bhattacharjee@outlook.com" class="hover:text-white transition-colors duration-300">Transmit Signal</a>
+                <span>//</span>
+                <a href="https://www.linkedin.com/in/abhaybhattacharjee/" target="_blank" class="hover:text-white transition-colors duration-300">LinkedIn Relay</a>
+            </div>
+
+            <div class="scroll-down text-xs syncopate tracking-widest text-dust-grey text-float">
+                Descend
+            </div>
+        </section>
+
+        <!-- Mission Objective -->
+        <section class="section-container">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-sm tracking-[0.5em] text-dust-grey mb-8 text-float">Mission Objective</h3>
+                <p class="text-2xl md:text-4xl font-light leading-relaxed text-float opacity-90">
+                    Scaling massive operations with over 250 crew members. Expertise in performance hyper-drive, KPI navigation, and data-driven tactical AI integration across the digital frontier.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Log -->
+        <section class="section-container max-w-6xl mx-auto py-20">
+            <h3 class="text-sm tracking-[0.5em] text-dust-grey mb-20 text-center text-float">Deployment Logs</h3>
+            
+            <div class="space-y-32">
+                <!-- Role 1 -->
+                <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+                    <div class="md:w-1/4 shrink-0 pt-2">
+                        <p class="timeline-year text-float">2023 — Present</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h2 class="text-3xl md:text-5xl font-bold text-float mb-2">Operations Manager</h2>
+                        <h3 class="text-lg text-dust-grey tracking-widest text-float mb-8">TaskUs Command Sector</h3>
+                        <ul class="space-y-6 text-lg md:text-xl font-light text-float opacity-80 leading-relaxed list-none p-0">
+                            <li><span class="opacity-50 mr-4">/</span> Commanded 250+ teammates and 15 Team Leaders in multi-channel BPO landscapes.</li>
+                            <li><span class="opacity-50 mr-4">/</span> Suppressed attrition by 4% monthly for consecutive operational cycles.</li>
+                            <li><span class="opacity-50 mr-4">/</span> Engineered a 47.5% increase in Employee Satisfaction (ESAT).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+                    <div class="md:w-1/4 shrink-0 pt-2">
+                        <p class="timeline-year text-float">2021 — 2023</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h2 class="text-3xl md:text-5xl font-bold text-float mb-2">Operations Team Leader</h2>
+                        <h3 class="text-lg text-dust-grey tracking-widest text-float mb-8">TaskUs</h3>
+                        <ul class="space-y-6 text-lg md:text-xl font-light text-float opacity-80 leading-relaxed list-none p-0">
+                            <li><span class="opacity-50 mr-4">/</span> Surpassed FCR benchmarks by 4.8% for a squad of 21 experts.</li>
+                            <li><span class="opacity-50 mr-4">/</span> Deployed automation AppScripts and connectors to eliminate redundancy.</li>
+                            <li class="font-normal text-white"><span class="opacity-50 mr-4">/</span> Honored as Team Leader of the Year (2020).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 3 & 4 -->
+                <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+                    <div class="md:w-1/4 shrink-0 pt-2">
+                        <p class="timeline-year text-float">2018 — 2021</p>
+                    </div>
+                    <div class="md:w-3/4 space-y-12">
+                        <div>
+                            <h2 class="text-2xl font-bold text-float mb-2">Teammate</h2>
+                            <h3 class="text-sm text-dust-grey tracking-widest text-float">TaskUs (2020 — 2021)</h3>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-float mb-2">Apprenticeship - Machinist</h2>
+                            <h3 class="text-sm text-dust-grey tracking-widest text-float">Gun Carriage Factory, Jabalpur (2018 — 2020)</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Arsenal -->
+        <section class="section-container text-center">
+            <h3 class="text-sm tracking-[0.5em] text-dust-grey mb-16 text-float">Technological Arsenal</h3>
+            <div class="skills-grid text-float max-w-5xl mx-auto">
+                <div class="skill-item">PowerBI</div>
+                <div class="skill-item">Tableau</div>
+                <div class="skill-item">Looker Studio</div>
+                <div class="skill-item">AI Integration</div>
+                <div class="skill-item">Salesforce</div>
+                <div class="skill-item">Data Analysis</div>
+                <div class="skill-item">AppScripts</div>
+                <div class="skill-item">Power Automate</div>
+                <div class="skill-item">Risk Management</div>
+            </div>
+        </section>
+
+        <!-- Credentials -->
+        <section class="section-container max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20">
+                <div>
+                    <h3 class="text-sm tracking-[0.5em] text-dust-grey mb-12 text-float">Education Base</h3>
+                    <div class="space-y-10 text-float">
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">B.Com, Applied Finance</h4>
+                            <p class="text-dust-grey font-light">St. Aloysius Autonomous College</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">Senior Secondary</h4>
+                            <p class="text-dust-grey font-light">St. Gabriels’ School, Jabalpur</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm tracking-[0.5em] text-dust-grey mb-12 text-float">Certifications</h3>
+                    <div class="space-y-10 text-float">
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">Google AI Essentials</h4>
+                            <p class="text-dust-grey font-light tracking-widest text-sm">2025</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">Google Data Analytics</h4>
+                            <p class="text-dust-grey font-light tracking-widest text-sm">2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-40 text-center pb-10">
+                <p class="timeline-year text-float opacity-30">End of Transmission</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Fullscreen & Initialization Logic
+        function initExperience() {
+            const elem = document.documentElement;
+            // Request Fullscreen across different browsers
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+
+            // Hide Start Screen, Show Content
+            const startScreen = document.getElementById('start-screen');
+            startScreen.style.opacity = '0';
+            
+            document.getElementById('content-layer').style.display = 'block';
+            
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+            }, 1500);
+
+            // Initialize 3D World
+            init3DWorld();
+        }
+
+        // Three.js Interactive Asteroid World
+        function init3DWorld() {
+            let scene, camera, renderer, asteroids = [], starfield;
+            let mouseX = 0, mouseY = 0;
+            let targetX = 0, targetY = 0;
+            
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x000000, 0.001); // Fade into black distance
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 3000);
+            camera.position.z = 800;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Performance optimization
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // 1. Starfield (Pure White points in black void)
+            const starGeo = new THREE.BufferGeometry();
+            const starCoords = [];
+            for(let i=0; i<8000; i++) {
+                starCoords.push(THREE.MathUtils.randFloatSpread(4000));
+                starCoords.push(THREE.MathUtils.randFloatSpread(4000));
+                starCoords.push(THREE.MathUtils.randFloatSpread(4000));
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
+            starfield = new THREE.Points(starGeo, new THREE.PointsMaterial({ 
+                color: 0xffffff, 
+                size: 1.2, 
+                transparent: true, 
+                opacity: 0.6 
+            }));
+            scene.add(starfield);
+
+            // 2. Dark Grey Asteroids
+            const asteroidCount = 35;
+            for(let i=0; i<asteroidCount; i++) {
+                const size = Math.random() * 40 + 10;
+                const geometry = new THREE.IcosahedronGeometry(size, 1);
+                
+                // Distort geometry for organic shapes
+                const position = geometry.attributes.position;
+                for (let j = 0; j < position.count; j++) {
+                    position.setXYZ(
+                        j, 
+                        position.getX(j) * (1 + Math.random() * 0.3), 
+                        position.getY(j) * (1 + Math.random() * 0.3), 
+                        position.getZ(j) * (1 + Math.random() * 0.3)
+                    );
+                }
+                geometry.computeVertexNormals();
+
+                const material = new THREE.MeshStandardMaterial({
+                    color: 0x111111, // Very dark grey
+                    roughness: 0.9,
+                    metalness: 0.2,
+                    flatShading: true
+                });
+
+                const asteroid = new THREE.Mesh(geometry, material);
+                
+                // Random position
+                asteroid.position.x = Math.random() * 2000 - 1000;
+                asteroid.position.y = Math.random() * 2000 - 1000;
+                asteroid.position.z = Math.random() * -2000;
+                
+                asteroids.push({
+                    mesh: asteroid,
+                    rotSpeedX: (Math.random() - 0.5) * 0.01,
+                    rotSpeedY: (Math.random() - 0.5) * 0.01,
+                    driftSpeed: Math.random() * 0.5 + 0.1
+                });
+                scene.add(asteroid);
+            }
+
+            // 3. Cinematic Lighting
+            // High contrast white directional light
+            const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
+            mainLight.position.set(500, 500, 500);
+            scene.add(mainLight);
+
+            // Subtle rim light
+            const backLight = new THREE.DirectionalLight(0x444444, 2);
+            backLight.position.set(-500, -500, -500);
+            scene.add(backLight);
+
+            const ambient = new THREE.AmbientLight(0x111111); // Very low ambient
+            scene.add(ambient);
+
+            // Interaction Event Listeners
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - windowHalfX);
+                mouseY = (e.clientY - windowHalfY);
+            });
+
+            // Parallax scroll effect
+            window.addEventListener('scroll', () => {
+                targetY = window.scrollY * 0.5;
+            });
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Camera Parallax & Mouse Movement
+                camera.position.x += (mouseX * 0.1 - camera.position.x) * 0.05;
+                camera.position.y += (-mouseY * 0.1 - targetY - camera.position.y) * 0.05;
+                camera.lookAt(0, -targetY * 0.5, 0);
+
+                // Rotate Starfield
+                starfield.rotation.y += 0.0002;
+                starfield.rotation.x += 0.0001;
+
+                // Animate Asteroids
+                asteroids.forEach(a => {
+                    a.mesh.rotation.x += a.rotSpeedX;
+                    a.mesh.rotation.y += a.rotSpeedY;
+                    a.mesh.position.z += a.driftSpeed;
+                    
+                    // Recycle asteroids that pass the camera
+                    if (a.mesh.position.z > camera.position.z + 100) {
+                        a.mesh.position.z = -2000;
+                        a.mesh.position.x = Math.random() * 2000 - 1000 + camera.position.x;
+                        a.mesh.position.y = Math.random() * 2000 - 1000 + camera.position.y;
+                    }
+                });
+
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
     </script>
 </body>
 </html>
